@@ -5,18 +5,19 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.math_real.all;
 use work.fizzbuzz_pkg.all;
 
 entity fizzbuzz is
 	generic (
-		g_length : natural :=LENGTH);
+		g_length : natural :=100);
 	port(
 		i_clk : in std_ulogic;
 		i_rst : in std_ulogic;
 		i_en : in std_ulogic;
 		o_is_fizz : out std_ulogic;
 		o_is_buzz : out std_ulogic;
-		o_number : out std_ulogic_vector(SIZE -1 downto 0));
+		o_number : out std_ulogic_vector(natural(ceil(log2(real(g_length)))) -1 downto 0));
 end fizzbuzz;
 
 architecture arch of fizzbuzz is
@@ -26,7 +27,7 @@ architecture arch of fizzbuzz is
 	type buzz_states is (idle,buzz_1,buzz_2,buzz_3,buzz_4,buzz_5); 
 	signal state_buzz : buzz_states;
 
-	signal cnt : integer range 0 to LENGTH :=0;
+	signal cnt : integer range 0 to g_length :=0;
 begin
 	fizzbuzz_FSM : process(i_clk) 
 	begin
@@ -40,7 +41,7 @@ begin
 				state_buzz <= idle;
 			else
 				if(i_en) then
-					if(cnt < LENGTH) then
+					if(cnt < g_length) then
 						cnt <= cnt +1;
 					else
 						cnt <= 0;
