@@ -12,7 +12,7 @@ g_length = int(cocotb.top.g_length)
 covered_values = []
 full = False
 
-event = Event(name = 'full')
+# event = Event(name = 'full')
 lock = Lock()
 
 # Sequence classes
@@ -35,6 +35,7 @@ class SeqItem(uvm_sequence_item):
 
 class RandomSeq(uvm_sequence):
     async def body(self):
+        # while True:
         data_tr = SeqItem("data_tr",1)
         await self.start_item(data_tr)
         data_tr.randomize_operands()
@@ -72,12 +73,20 @@ class Driver(uvm_driver):
 
 class Coverage(uvm_subscriber):
 
+    def __init__(self, name, parent, event):
+        super().__init__(name,parent)
+        self.event = event
+
     def end_of_elaboration_phase(self):
         self.cvg = set()
 
     def write(self, result):
         (o_number, is_fizz, is_buzz) = result
-        self.cvg.add(int(o_number))
+        if(int(o_number) not in self.cvg):
+            self.cvg.add(int(o_number))
+            print("Added {}".format(int(o_number)))
+        if(len(self.cvg) == g_length):
+            self.event.set()
 
     def report_phase(self):
         try:
@@ -94,7 +103,8 @@ class Coverage(uvm_subscriber):
             else:
                 self.logger.info("Covered all input space")
                 full = True
-                event.set()
+
+                # self.event.release()
                 assert True
 
 
@@ -155,6 +165,9 @@ class Monitor(uvm_component):
 
 
 class Env(uvm_env):
+    def __init__(self, name, parent,event):
+        super().__init__(name,parent)
+        self.event = event
 
     def build_phase(self):
         self.seqr = uvm_sequencer("seqr", self)
@@ -162,7 +175,7 @@ class Env(uvm_env):
         self.driver = Driver.create("driver", self)
         self.data_mon = Monitor("data_mon", self, "get_data")
         self.result_mon = Monitor("result_mon",self,"get_result")
-        self.coverage = Coverage("coverage", self)
+        self.coverage = Coverage("coverage", self,self.event)
         self.scoreboard = Scoreboard("scoreboard", self)
 
     def connect_phase(self):
@@ -176,9 +189,12 @@ class Env(uvm_env):
 @pyuvm.test()
 class Test(uvm_test):
     """Test fizzbuzz with random values"""
+    def __init__(self, name,parent):
+        super().__init__(name,parent)
+        self.event = Event()
 
     def build_phase(self):
-        self.env = Env("env", self)
+        self.env = Env("env", self, self.event)
 
     def end_of_elaboration_phase(self):
         self.test_all = TestAllSeq.create("test_all")
@@ -186,5 +202,5 @@ class Test(uvm_test):
     async def run_phase(self):
         self.raise_objection()
         await self.test_all.start()
-        await Timer(12000,units = 'ns') 
+        await self.event.wait()
         self.drop_objection()
