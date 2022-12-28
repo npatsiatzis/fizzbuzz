@@ -1,3 +1,4 @@
+![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/regression_pyuvm.yml/badge.svg)
 
 ### simple two input adder RTL implementation
 ### testbench based on pyuvm with the help of cocotb

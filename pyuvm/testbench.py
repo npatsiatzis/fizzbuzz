@@ -9,11 +9,6 @@ from utils import FizzBuzzBfm
 
 
 g_length = int(cocotb.top.g_length)
-covered_values = []
-full = False
-
-# event = Event(name = 'full')
-lock = Lock()
 
 # Sequence classes
 class SeqItem(uvm_sequence_item):
@@ -84,7 +79,6 @@ class Coverage(uvm_subscriber):
         (o_number, is_fizz, is_buzz) = result
         if(int(o_number) not in self.cvg):
             self.cvg.add(int(o_number))
-            print("Added {}".format(int(o_number)))
         if(len(self.cvg) == g_length):
             self.event.set()
 
@@ -102,9 +96,6 @@ class Coverage(uvm_subscriber):
 
             else:
                 self.logger.info("Covered all input space")
-                full = True
-
-                # self.event.release()
                 assert True
 
 
@@ -182,7 +173,6 @@ class Env(uvm_env):
         self.driver.seq_item_port.connect(self.seqr.seq_item_export)
         self.data_mon.ap.connect(self.scoreboard.data_export)
         self.result_mon.ap.connect(self.coverage.analysis_export)
-        # self.data_mon.ap.connect(self.coverage.analysis_export)
         self.driver.ap.connect(self.scoreboard.result_export)
 
 
