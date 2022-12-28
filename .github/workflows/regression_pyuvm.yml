@@ -40,5 +40,4 @@ jobs:
     
     - name: regression
       run: |
-        make
-        #SIM=ghdl pytest -n auto -o log_cli=True --junitxml=test-results.xml --cocotbxml=test-cocotb.xml test_pyuvm_fizzbuzz.py
+        SIM=ghdl pytest -n auto -o log_cli=True --junitxml=test-results.xml --cocotbxml=test-cocotb.xml pyuvm/test_pyuvm_fizzbuzz.py
