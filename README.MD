@@ -1,6 +1,6 @@
 ![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/regression.yml/badge.svg)
 ![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/coverage.yml/badge.svg)
-
+![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/regression_pyuvm.yml/badge.svg)
 ### fizzbuzz RTL implementation
 
 
