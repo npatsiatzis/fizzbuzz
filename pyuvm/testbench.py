@@ -1,14 +1,20 @@
-from cocotb.triggers import Timer,ClockCycles,Join,First,Event,Lock
 from cocotb.clock import Clock
 from pyuvm import *
 import random
 import cocotb
 import pyuvm
 from utils import FizzBuzzBfm
-
+from cocotb_coverage.coverage import CoverPoint,coverage_db
 
 
 g_length = int(cocotb.top.g_length)
+
+
+#at_least = value is superfluous, just shows how you can determine the amount of times that
+#a bin must be hit to considered covered
+@CoverPoint("top.o_number",xf = lambda x : x, bins = list(range(g_length)), at_least=1)
+def number_cover(x):
+    pass
 
 # Sequence classes
 class SeqItem(uvm_sequence_item):
@@ -30,7 +36,6 @@ class SeqItem(uvm_sequence_item):
 
 class RandomSeq(uvm_sequence):
     async def body(self):
-        # while True:
         data_tr = SeqItem("data_tr",1)
         await self.start_item(data_tr)
         data_tr.randomize_operands()
@@ -77,6 +82,7 @@ class Coverage(uvm_subscriber):
 
     def write(self, result):
         (o_number, is_fizz, is_buzz) = result
+        number_cover(o_number)
         if(int(o_number) not in self.cvg):
             self.cvg.add(int(o_number))
         if(len(self.cvg) == g_length):
@@ -193,4 +199,6 @@ class Test(uvm_test):
         self.raise_objection()
         await self.test_all.start()
         await self.event.wait()
+        coverage_db.report_coverage(cocotb.log.info,bins=True)
+        coverage_db.export_to_xml(filename="coverage.xml")      
         self.drop_objection()
