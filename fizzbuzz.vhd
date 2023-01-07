@@ -110,8 +110,11 @@ begin
 
 		default clock is rising_edge(i_clk);
 
+		sequence not_init is {i_rst = '0' and i_en ='1' [*1 to inf]; i_rst = '1' [*1 to inf]};
 		sequence init is {i_rst = '1'; i_rst = '0' and i_en = '1' [*1 to inf]};
 
+		assert_not_init_fizz : assert always {not_init; prev_cnt mod 3 =2}|-> o_is_fizz = '1';
+		assert_not_init_buzz : assert always {not_init; prev_cnt mod 5 =4}|-> o_is_buzz = '1';
 		assert_fizz : assert always {init; prev_cnt mod 3 = 2} |-> o_is_fizz = '1';
 		assert_buzz : assert always {init; prev_cnt mod 5 = 4} |-> o_is_buzz = '1';
 	end generate;
