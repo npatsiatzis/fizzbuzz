@@ -15,9 +15,11 @@ VHDL_SOURCES += $(PWD)/fizzbuzz.vhd
 MODULE = testbench
 TOPLEVEL = fizzbuzz
 
-# test_fizzbuzz:
-# 		rm -rf sim_build
-# 		$(MAKE) sim MODULE=testbench TOPLEVEL=fizzbuzz
+test_fizzbuzz:
+		rm -rf sim_build
+		$(MAKE) sim MODULE=testbench TOPLEVEL=fizzbuzz
+formal :
+		sby --yosys "yosys -m ghdl" -f fizzbuzz.sby
 
 # include cocotb's make rules to take care of the simulator setup
 include $(shell cocotb-config --makefiles)/Makefile.sim

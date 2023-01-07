@@ -10,7 +10,8 @@ use work.fizzbuzz_pkg.all;
 
 entity fizzbuzz is
 	generic (
-		g_length : natural :=100);
+		g_length : natural :=100;
+		formal : boolean := true);
 	port(
 		i_clk : in std_ulogic;
 		i_rst : in std_ulogic;
@@ -90,4 +91,28 @@ begin
 	end process; -- fizzbuzz_FSM
 
 	o_number <= std_ulogic_vector(to_unsigned(cnt,o_number'length));
+
+	--cover temporal conditions(verify sequential functional behavior over period of time)
+	--combinatorial (zero-time) conditions can be verified by assertions in VHDL or testbench (cocotb)
+	formal_properties : if formal = true generate 
+		signal prev_cnt : integer range 0 to g_length;
+	begin
+		reg_number : process(i_clk)
+		begin
+			if(rising_edge(i_clk)) then
+				if(i_rst = '1') then
+					prev_cnt <= 0;
+				else
+					prev_cnt <= cnt;
+				end if;
+			end if;
+		end process; -- reg_number
+
+		default clock is rising_edge(i_clk);
+
+		sequence init is {i_rst = '1'; i_rst = '0' and i_en = '1' [*1 to inf]};
+
+		assert_fizz : assert always {init; prev_cnt mod 3 = 2} |-> o_is_fizz = '1';
+		assert_buzz : assert always {init; prev_cnt mod 5 = 4} |-> o_is_buzz = '1';
+	end generate;
 end arch;
