@@ -1,0 +1,30 @@
+name: sby Formal Verification
+on: [push]
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.10.6]
+  
+    env:
+      SIM: ghdl
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Install dependencies
+    - uses: actions/checkout@v3
+    - uses: YosysHQ/setup-oss-cad-suite@v1
+    - uses: ghdl/setup-ghdl-ci@nightly
+      with:
+        backend: llvm
+
+    - run: |
+        ghdl --version
+        $GHDL --version
+        
+    - name: formal verification
+      run: |
+        sby --yosys "yosys -m ghdl" -f fizzbuzz.sby
+ 
