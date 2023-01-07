@@ -3,29 +3,36 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
       - name: Get latest sby sources
         uses: actions/checkout@v3
         with:
           repository: YosysHQ/sby
       - name: Setup test environment
         uses: YosysHQ/setup-oss-cad-suite@v1
- 
-      - name: Install dependencies
-        uses: ghdl/setup-ghdl-ci@nightly
-        with:
-          backend: llvm
-
-      - run: |
-          ghdl --version
-          $GHDL --version
-        
-      - name: formal verification
-        run: |
-          sby --yosys "yosys -m ghdl" -f fizzbuzz.sby
+   
   
+
+  run_tests:
+    runs-on: ubuntu-latest
+    env:
+      SIM: ghdl
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install dependencies
+      uses: ghdl/setup-ghdl-ci@nightly
+      with:
+        backend: llvm
+
+    - run: |
+        ghdl --version
+        $GHDL --version
+
+    - name: formal verification
+      run: |
+        sby --yosys "yosys -m ghdl" -f fizzbuzz.sby
 #     env:
 #       SIM: ghdl
 
