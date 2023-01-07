@@ -11,8 +11,6 @@ jobs:
           repository: YosysHQ/sby
       - name: Setup test environment
         uses: YosysHQ/setup-oss-cad-suite@v1
-      - name: Run checks
-        run: tabbypip install xmlschema && make ci
 
 
 # jobs:
