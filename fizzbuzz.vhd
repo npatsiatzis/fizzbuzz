@@ -48,6 +48,8 @@ begin
 						if(i_en = '1') then
 							start := true;
 							state_fizz <= fizz_1;
+						else
+							start := false;
 						end if;
 					when fizz_1 =>
 						state_fizz <= fizz_2;
@@ -66,6 +68,8 @@ begin
 						if(i_en = '1') then
 							start := true;
 							state_buzz <= buzz_1;
+						else
+							start := false;
 						end if ;
 					when buzz_1 =>
 						state_buzz <= buzz_2;
@@ -87,6 +91,8 @@ begin
 						cnt <= cnt +1;
 					else
 						cnt <= 0;
+						state_fizz <= idle;
+						state_buzz <= idle;
 					end if;
 				else
 					cnt <= 0;
