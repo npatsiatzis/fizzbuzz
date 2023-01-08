@@ -1,14 +1,18 @@
+[tasks]
+bmc
+
 [options]
 mode bmc
 depth 20
 
 [engines]
-smtbmc 
+smtbmc
 
 [script]
-ghdl -fpsl --std=08 -gformal=true fizzbuzz_pkg.vhd fizzbuzz.vhd -e fizzbuzz
+ghdl --std=08  fizzbuzz_pkg.vhd fizzbuzz.vhd fizzbuzz.psl -e fizzbuzz
 prep -top fizzbuzz
 
 [files]
+fizzbuzz.psl
 fizzbuzz_pkg.vhd
 fizzbuzz.vhd
