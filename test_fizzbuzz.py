@@ -19,7 +19,7 @@ vhdl_sources = [
                                    
 #run 10 test with length generic values start = 10 end = 1000 step = 100
 @pytest.mark.parametrize("g_length", [str(i) for i in range(100,1100,100)])
-def test(formal,g_length):
+def test(g_length):
 
 
     parameter = {}
