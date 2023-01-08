@@ -41,7 +41,7 @@ begin
 				state_fizz <= idle;
 				state_buzz <= idle;
 			else
-				if(i_en) then
+				if(i_en = '1' and cnt = 0) then
 					if(cnt < g_length) then
 						cnt <= cnt +1;
 					else
@@ -113,9 +113,18 @@ begin
 		sequence not_init is {i_rst = '0' and i_en ='1' [*1 to inf]; i_rst = '1' [*1 to inf]};
 		sequence init is {i_rst = '1'; i_rst = '0' and i_en = '1' [*1 to inf]};
 
-		assert_not_init_fizz : assert always {not_init; prev_cnt mod 3 =2}|-> o_is_fizz = '1';
-		assert_not_init_buzz : assert always {not_init; prev_cnt mod 5 =4}|-> o_is_buzz = '1';
-		assert_fizz : assert always {init; prev_cnt mod 3 = 2} |-> o_is_fizz = '1';
-		assert_buzz : assert always {init; prev_cnt mod 5 = 4} |-> o_is_buzz = '1';
+		--not making any assumptions regarding rst and en signals. uncovered bug with
+		--the cnt signal that required en to be asserted for it to run, whereas required
+		--behavior is that one cycle of en is enough for fizzbuzz to start running
+		assert_free_rst_en : assert always {cnt/=0 and cnt mod 3 = 0} |-> o_is_fizz = '1';
+
+
+		--start running(assert en) without going through a reset cycle. Then at some point assert reset
+		assert_not_init_fizz : assert always {not_init; cnt /=0 and cnt mod 3 =0} |-> o_is_fizz = '1';
+		assert_not_init_buzz : assert always {not_init; cnt /= 0 and cnt mod 5 =0}|-> o_is_buzz = '1';
+
+		--go through a reset cycle and then at deassertion assert en
+		assert_fizz : assert always {init; cnt mod 3 = 0} |-> o_is_fizz = '1';
+		assert_buzz : assert always {init; cnt mod 5 = 0} |-> o_is_buzz = '1';
 	end generate;
 end arch;
