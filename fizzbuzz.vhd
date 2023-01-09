@@ -10,7 +10,7 @@ use work.fizzbuzz_pkg.all;
 
 entity fizzbuzz is
 	generic (
-		g_length : natural :=100);
+		g_length : natural :=20);
 	port(
 		i_clk : in std_ulogic;
 		i_rst : in std_ulogic;

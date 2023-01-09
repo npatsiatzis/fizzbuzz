@@ -27,4 +27,7 @@ vunit formal_test(fizzbuzz(arch)) {
 	assert_fizz : assert always {init; cnt /=0 and cnt mod 3 = 0} |-> o_is_fizz = '1';
 	assert_buzz : assert always {init; cnt /=0 and cnt mod 5 = 0} |-> o_is_buzz = '1';
 
+	--start from any combination of states; after that check that the behavior is the required one
+	assert_rst_state_fizz : assert always {state_fizz /= idle && state_buzz /= idle; cnt /=0 and cnt mod 3 =0} |-> o_is_fizz = '1';
+	assert_rst_state_buzz : assert always {state_fizz /= idle && state_buzz /= idle; cnt /=0 and cnt mod 5 =0} |-> o_is_buzz = '1';
 }
