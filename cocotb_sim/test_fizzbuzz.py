@@ -12,16 +12,18 @@ rtl_dir = tests_dir                                    #path to hdl folder where
 module = "testbench"
 toplevel = "fizzbuzz"   
 vhdl_sources = [
-    os.path.join(rtl_dir, "fizzbuzz_pkg.vhd"),
-    os.path.join(rtl_dir, "fizzbuzz.vhd"),
+    os.path.join(rtl_dir, "../rtl/fizzbuzz_pkg.vhd"),
+    os.path.join(rtl_dir, "../rtl/fizzbuzz.vhd"),
     ]
 
                                    
 #run 10 test with length generic values start = 10 end = 1000 step = 100
-@pytest.mark.parametrize("parameter", [{"g_length": str(i)} for i in range(100,1100,100)])
-def test(parameter):
+@pytest.mark.parametrize("g_length", [str(i) for i in range(100,1100,100)])
+def test(g_length):
 
 
+    parameter = {}
+    parameter['g_length'] = g_length
 
     run(
         python_search=[tests_dir],                         #where to search for all the python test files
@@ -39,3 +41,4 @@ def test(parameter):
 
     if __name__ == "__main__":
     	test(parameter)
+
