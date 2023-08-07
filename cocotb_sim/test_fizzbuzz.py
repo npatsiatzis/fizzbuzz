@@ -12,8 +12,8 @@ rtl_dir = tests_dir                                    #path to hdl folder where
 module = "testbench"
 toplevel = "fizzbuzz"   
 vhdl_sources = [
-    os.path.join(rtl_dir, "../rtl/fizzbuzz_pkg.vhd"),
-    os.path.join(rtl_dir, "../rtl/fizzbuzz.vhd"),
+    os.path.join(rtl_dir, "../rtl/VHDL/fizzbuzz_pkg.vhd"),
+    os.path.join(rtl_dir, "../rtl/VHDL/fizzbuzz.vhd"),
     ]
 
                                    
