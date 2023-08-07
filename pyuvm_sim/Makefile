@@ -6,8 +6,8 @@ TOPLEVEL_LANG ?= vhdl
 EXTRA_ARGS += --std=08
 SIM_ARGS += --wave=wave.ghw
 
-VHDL_SOURCES += $(PWD)/../rtl/fizzbuzz_pkg.vhd
-VHDL_SOURCES += $(PWD)/../rtl/fizzbuzz.vhd
+VHDL_SOURCES += $(PWD)/../rtl/VHDL/fizzbuzz_pkg.vhd
+VHDL_SOURCES += $(PWD)/../rtl/VHDL/fizzbuzz.vhd
 # use VHDL_SOURCES for VHDL files
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
@@ -25,3 +25,7 @@ clean_dir:
 		find -mindepth 1 -maxdepth 1 -type d -print0 | xargs -r0 rm -R
 # include cocotb's make rules to take care of the simulator setup
 include $(shell cocotb-config --makefiles)/Makefile.sim
+
+
+
+	

@@ -14,5 +14,5 @@ prep -top fizzbuzz
 
 [files]
 fizzbuzz.psl
-../rtl/fizzbuzz_pkg.vhd
-../rtl/fizzbuzz.vhd
+../rtl/VHDL/fizzbuzz_pkg.vhd
+../rtl/VHDL/fizzbuzz.vhd
