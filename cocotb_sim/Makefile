@@ -18,6 +18,10 @@ TOPLEVEL = fizzbuzz
 test_fizzbuzz:
 		rm -rf sim_build
 		$(MAKE) sim MODULE=testbench TOPLEVEL=fizzbuzz
+		
+lint: $(VHDL_SOURCES)
+	vsg --style jcl -f $^
+
 documentation:
 		doxygen
 clean_dir:
