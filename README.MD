@@ -1,16 +1,22 @@
 ![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/regression.yml/badge.svg)
 ![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/coverage.yml/badge.svg)
 ![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/formal.yml/badge.svg)
+![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/regression_pyuvm.yml/badge.svg)
+![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/coverage_pyuvm.yml/badge.svg)
 
 ### fizzbuzz RTL implementation
 
 
 - Count from 0 to length (user-defined)
 - set fizz if number divisible by 3, buzz if divisible by 5 and fizzbuzz if divisible by both
-- CoCoTB testbench for functional verification
-    - $ make
-- CoCoTB-test unit testing to exercise the CoCoTB tests across a range of values for the generic parameters
-    - $  SIM=ghdl pytest -n auto -o log_cli=True --junitxml=test-results.xml --cocotbxml=test-cocotb.xml
-- formal verification using SymbiYosys (sby), which tool based around Yosys and SAT solvers that lets you do formal verification on your code (here properties specified in PSL)
-    - $ make formal
+
+-- RTL code in:
+- [VHDL](https://github.com/npatsiatzis/fizzbuzz/tree/main/rtl/VHDL)
+- [SystemVerilog](https://github.com/npatsiatzis/fizzbuzz/tree/main/rtl/SystemVerilog)
+
+-- Functional verification with methodologies:
+- [cocotb](https://github.com/npatsiatzis/fizzbuzz/tree/main/cocotb_sim)
+- [pyuvm](https://github.com/npatsiatzis/fizzbuzz/tree/main/pyuvm_sim)
+- [UVM](https://github.com/npatsiatzis/fizzbuzz/tree/main/uvm_sim)
+- [C++-based transactional tb (verilator)](https://github.com/npatsiatzis/fizzbuzz/tree/main/verilator_sim)
 

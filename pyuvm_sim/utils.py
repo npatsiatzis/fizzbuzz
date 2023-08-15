@@ -56,7 +56,8 @@ class FizzBuzzBfm(metaclass=utility_classes.Singleton):
     async def result_mon_bfm(self):
         while True:
             await RisingEdge(self.dut.i_clk)
-            self.result_mon_queue.put_nowait((self.dut.o_number.value,self.dut.o_is_fizz.value,self.dut.o_is_buzz.value))
+            if(self.dut.i_rst.value ==0):
+                self.result_mon_queue.put_nowait((self.dut.o_number.value,self.dut.o_is_fizz.value,self.dut.o_is_buzz.value))
 
 
     def start_bfm(self):
