@@ -1,5 +1,4 @@
 // Verilator Example
-// Norbertas Kremeris 2021
 #include <stdlib.h>
 #include <iostream>
 #include <cstdlib>
