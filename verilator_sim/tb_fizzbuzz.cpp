@@ -3,11 +3,14 @@
 #include <iostream>
 #include <cstdlib>
 #include <memory>
+#include <set>
+#include <deque>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
+#include <verilated_cov.h>
 #include "Vfizzbuzz.h"
 #include "Vfizzbuzz_fizzbuzz.h"   //to get parameter values, after they've been made visible in SV
-
+#include "Vfizzbuzz___024root.h"
 
 #define MAX_SIM_TIME 300
 #define VERIF_START_TIME 7
@@ -49,21 +52,24 @@ class OutTx {
 //         }
 // };
 
-//out domain Coverage
-// class OutCoverage {
-//     private:
-//         std::set <unsigned int> coverage;
+// out domain Coverage
+class OutCoverage {
+    private:
+        std::set <unsigned int> coverage;
+        int cvg_size =0;
 
-//     public:
-//         void write_coverage(OutTx* tx){
-//             coverage.insert(tx->number); 
-//             // std::cout << "num is :" << tx->number << "fizz is :" << tx->is_fizz << "buzz is :" << tx->is_buzz << std::endl;
-//         }
+    public:
+        void write_coverage(OutTx* tx){
+            coverage.insert(tx->number);
+            cvg_size++;
+            // std::cout << "num is :" << tx->number << "fizz is :" << tx->is_fizz << "buzz is :" << tx->is_buzz << std::endl;
+        }
 
-//         bool is_full_coverage(){
-//             return coverage.size() == Vfizzbuzz_fizzbuzz::G_LENGTH-1;
-//         }
-// };
+        bool is_full_coverage(){
+            return cvg_size == 2*Vfizzbuzz_fizzbuzz::G_LENGTH;
+            // return coverage.size() == Vfizzbuzz_fizzbuzz::G_LENGTH-1;
+        }
+};
 
 
 // ALU scoreboard
@@ -171,23 +177,26 @@ class OutMon {
         // Scb *scb;
         std::shared_ptr<Scb> scb;
         // OutCoverage *cvg;
-        // std::shared_ptr<OutCoverage> cvg;
+        std::shared_ptr<OutCoverage> cvg;
     public:
-        OutMon(std::shared_ptr<Vfizzbuzz> dut, std::shared_ptr<Scb> scb){
+        OutMon(std::shared_ptr<Vfizzbuzz> dut, std::shared_ptr<Scb> scb,std::shared_ptr<OutCoverage> cvg){
             this->dut = dut;
             this->scb = scb;
+            this->cvg = cvg;
         }
 
         void monitor(){
             // if(dut->o_valid == 1){
-            OutTx *tx = new OutTx();    
-            tx->is_fizz = dut->o_is_fizz;
-            tx->is_buzz = dut->o_is_buzz;
-            tx->number = dut->o_number;
+            if(dut->rootp->fizzbuzz->start == 1) {
+                OutTx *tx = new OutTx();    
+                tx->is_fizz = dut->o_is_fizz;
+                tx->is_buzz = dut->o_is_buzz;
+                tx->number = dut->o_number;
 
-            // then pass the transaction item to the scoreboard
-            scb->writeOut(tx);
-            // cvg->write_coverage(tx);
+                // then pass the transaction item to the scoreboard
+                scb->writeOut(tx);
+                cvg->write_coverage(tx);
+            }
             // }
         }
 };
@@ -255,13 +264,18 @@ int main(int argc, char** argv, char** env) {
     std::unique_ptr<InDrv> drv(new InDrv(dut));
     std::shared_ptr<Scb> scb(new Scb());
     // std::shared_ptr<InCoverage> inCoverage(new InCoverage());
-    // std::shared_ptr<OutCoverage> outCoverage(new OutCoverage());
+    std::shared_ptr<OutCoverage> outCoverage(new OutCoverage());
     // std::unique_ptr<InMon> inMon(new InMon(dut,scb,inCoverage));
-    std::unique_ptr<OutMon> outMon(new OutMon(dut,scb));
+    std::unique_ptr<OutMon> outMon(new OutMon(dut,scb,outCoverage));
     std::unique_ptr<Sequence> sequence(new Sequence());
 
-    while(sim_time < MAX_SIM_TIME){
-    // while (outCoverage->is_full_coverage() == false) {
+    // while(sim_time < MAX_SIM_TIME){
+    while (outCoverage->is_full_coverage() == false) {
+        // random reset 
+        // 0-> all 0s
+        // 1 -> all 1s
+        // 2 -> all random
+        Verilated::randReset(2); 
         dut_reset(dut, sim_time);
         dut->i_clk ^= 1;
         dut->eval();
@@ -297,6 +311,7 @@ int main(int argc, char** argv, char** env) {
         sim_time++;
     }
 
+    VerilatedCov::write();
     m_trace->close();  
     exit(EXIT_SUCCESS);
 }
