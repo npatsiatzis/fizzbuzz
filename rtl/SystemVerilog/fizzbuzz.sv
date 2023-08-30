@@ -23,13 +23,20 @@ module fizzbuzz
 
     logic [$clog2(G_LENGTH) -1 : 0] cnt;
 
+    // Had to move start out here from being a local variable (as it should)
+    // inside the always block, because it was not visible from within the verilator tb
+    // and I did not want to make it external to gain visibility.
+    // Also then turn off BLKSEQ lint rule since we perform blocking assignments
+    // in a sequential procedural block with a NON-LOCAL signal.
+    
+    logic start /*verilator public_flat*/;
     always_ff @(posedge i_clk) begin : fizzbuzz_FSM
-        logic start;
 
         if(i_rst) begin
             cnt <= 0;
             state_fizz <= idle_fizz;
             state_buzz <= idle_buzz;
+            /*verilator lint_off BLKSEQ*/
             start = 1'b0;
 
             o_is_fizz <= 1'b0;
@@ -54,8 +61,10 @@ module fizzbuzz
                 end
                 fizz_3 :
                     state_fizz <= fizz_1;
+                /*verilator coverage_off*/
                 default :
                     state_fizz <= idle_fizz;
+                /*verialator coverage_on*/
             endcase
 
             o_is_buzz <= 1'b0;
@@ -79,8 +88,10 @@ module fizzbuzz
                 end
                 buzz_5 :
                     state_buzz <= buzz_1;
+                /*verilator coverage_off*/
                 default :
                     state_buzz <= idle_buzz;
+                /*verilator coverage_on*/
             endcase
 
             if(start) begin
@@ -97,5 +108,6 @@ module fizzbuzz
     end
 
     assign o_number = cnt;
+    /*verilator lint_on BLKSEQ*/
 
 endmodule : fizzbuzz
