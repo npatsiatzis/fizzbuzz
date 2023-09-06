@@ -3,7 +3,8 @@
 ![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/formal.yml/badge.svg)
 ![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/regression_pyuvm.yml/badge.svg)
 ![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/coverage_pyuvm.yml/badge.svg)
-
+![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/verilator_regression.yml/badge.svg)
+[![codecov](https://codecov.io/gh/npatsiatzis/fizzbuzz/graph/badge.svg?token=UIM9DPOFZE)](https://codecov.io/gh/npatsiatzis/fizzbuzz)
 ### fizzbuzz RTL implementation
 
 

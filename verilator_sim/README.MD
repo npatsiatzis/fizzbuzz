@@ -1,3 +1,4 @@
+![example workflow](https://github.com/npatsiatzis/fizzbuzz/actions/workflows/verilator_regression.yml/badge.svg)
 ### simple fizzbuzz SystemVerilog implementation
 
 
