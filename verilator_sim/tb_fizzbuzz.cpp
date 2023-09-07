@@ -66,8 +66,8 @@ class OutCoverage {
         }
 
         bool is_full_coverage(){
-            return cvg_size == 2*Vfizzbuzz_fizzbuzz::G_LENGTH;
-            // return coverage.size() == Vfizzbuzz_fizzbuzz::G_LENGTH-1;
+            return cvg_size == 2*Vfizzbuzz_fizzbuzz::g_length;
+            // return coverage.size() == Vfizzbuzz_fizzbuzz::g_length-1;
         }
 };
 
