@@ -3,7 +3,7 @@
 module fizzbuzz
     #(
         //use /*verilator public*/ on parameter -> parameter values visible to verialted code
-        parameter int G_LENGTH /*verilator public*/ = 50
+        parameter int g_length /*verilator public*/ = 50
     )
 
     (
@@ -12,7 +12,7 @@ module fizzbuzz
         input logic i_en,  // enable
         output logic o_is_fizz,
         output logic o_is_buzz,
-        output logic [$clog2(G_LENGTH) -1 : 0] o_number
+        output logic [$clog2(g_length) -1 : 0] o_number
     );
 
     typedef enum logic [1:0] {idle_fizz = 0, fizz_[1:3]} fizz_t /*verilator public*/;
@@ -21,7 +21,7 @@ module fizzbuzz
     fizz_t state_fizz;
     buzz_t state_buzz;
 
-    logic [$clog2(G_LENGTH) -1 : 0] cnt;
+    logic [$clog2(g_length) -1 : 0] cnt;
 
     // Had to move start out here from being a local variable (as it should)
     // inside the always block, because it was not visible from within the verilator tb
@@ -95,7 +95,7 @@ module fizzbuzz
             endcase
 
             if(start) begin
-                if(32'(cnt) < G_LENGTH)
+                if(32'(cnt) < g_length)
                     cnt <= cnt + 1;
                 else begin
                     cnt <= '0;
@@ -109,5 +109,14 @@ module fizzbuzz
 
     assign o_number = cnt;
     /*verilator lint_on BLKSEQ*/
+
+
+    `ifdef WAVEFORM
+        initial begin
+            // Dump waves
+            $dumpfile("dump.vcd");
+            $dumpvars(0, fizzbuzz);
+        end
+    `endif
 
 endmodule : fizzbuzz
