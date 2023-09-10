@@ -7,21 +7,21 @@ library ieee;
 	use ieee.math_real.all;
 	use work.fizzbuzz_pkg.all;
 
-entity FIZZBUZZ is
+entity fizzbuzz is
 	generic (
 		G_LENGTH : natural := 20
 	);
 	port (
-		I_CLK     : in    std_ulogic;
-		I_RST     : in    std_ulogic;
-		I_EN      : in    std_ulogic;
-		O_IS_FIZZ : out   std_ulogic;
-		O_IS_BUZZ : out   std_ulogic;
-		O_NUMBER  : out   std_ulogic_vector(natural(ceil(log2(real(G_LENGTH)))) - 1 downto 0)	--! current number
+		i_clk     : in    std_ulogic;
+		i_rst     : in    std_ulogic;
+		i_en      : in    std_ulogic;
+		o_is_fizz : out   std_ulogic;
+		o_is_buzz : out   std_ulogic;
+		o_number  : out   std_ulogic_vector(natural(ceil(log2(real(G_LENGTH)))) - 1 downto 0)	--! current number
 	);
-end entity FIZZBUZZ;
+end entity fizzbuzz;
 
-architecture ARCH of FIZZBUZZ is
+architecture arch of fizzbuzz is
 
 	type fizz_states is (idle, fizz_1, fizz_2, fizz_3);
 
@@ -35,28 +35,28 @@ architecture ARCH of FIZZBUZZ is
 
 begin
 
-	FIZZBUZZ_FSM : process (I_CLK) is
+	FIZZBUZZ_FSM : process (i_clk) is
 
 		variable start : boolean;
 
 	begin
 
-		if (rising_edge(I_CLK)) then
-			if (I_RST = '1') then
+		if (rising_edge(i_clk)) then
+			if (i_rst = '1') then
 				cnt       <= 0;
-				O_IS_FIZZ <= '0';
-				O_IS_BUZZ <= '0';
+				o_is_fizz <= '0';
+				o_is_buzz <= '0';
 				start     := false;
 
 				state_fizz <= idle;
 				state_buzz <= idle;
 			else
-				O_IS_FIZZ <= '0';
+				o_is_fizz <= '0';
 
 				case state_fizz is
 
 					when idle =>
-						if (I_EN = '1') then
+						if (i_en = '1') then
 							start := true;
 
 							state_fizz <= fizz_1;
@@ -68,7 +68,7 @@ begin
 						state_fizz <= fizz_2;
 
 					when fizz_2 =>
-						O_IS_FIZZ <= '1';
+						o_is_fizz <= '1';
 
 						state_fizz <= fizz_3;
 
@@ -80,12 +80,12 @@ begin
 
 				end case;
 
-				O_IS_BUZZ <= '0';
+				o_is_buzz <= '0';
 
 				case state_buzz is
 
 					when idle =>
-						if (I_EN = '1') then
+						if (i_en = '1') then
 							start := true;
 
 							state_buzz <= buzz_1;
@@ -103,7 +103,7 @@ begin
 						state_buzz <= buzz_4;
 
 					when buzz_4 =>
-						O_IS_BUZZ <= '1';
+						o_is_buzz <= '1';
 
 						state_buzz <= buzz_5;
 
@@ -132,6 +132,6 @@ begin
 
 	end process FIZZBUZZ_FSM;
 
-	O_NUMBER <= std_ulogic_vector(to_unsigned(cnt, O_NUMBER'length));
+	o_number <= std_ulogic_vector(to_unsigned(cnt, o_number'length));
 
-end architecture ARCH;
+end architecture arch;

@@ -1,0 +1,11 @@
+[gold]
+read_verilog -sv ../SystemVerilog/*.sv
+prep -top fizzbuzz
+
+[gate]
+ghdl --std=08 ../VHDL/fizzbuzz.vhd ../VHDL/fizzbuzz_pkg.vhd  -e fizzbuzz
+prep -top fizzbuzz
+
+[strategy simple]
+use sat
+depth 30
