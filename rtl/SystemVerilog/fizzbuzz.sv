@@ -3,7 +3,7 @@
 module fizzbuzz
     #(
         //use /*verilator public*/ on parameter -> parameter values visible to verialted code
-        parameter int g_length /*verilator public*/ = 50
+        parameter int g_length /*verilator public*/ = 20
     )
 
     (
@@ -14,9 +14,14 @@ module fizzbuzz
         output logic o_is_buzz,
         output logic [$clog2(g_length) -1 : 0] o_number
     );
-
-    typedef enum logic [1:0] {idle_fizz = 0, fizz_[1:3]} fizz_t /*verilator public*/;
-    typedef enum logic [2:0] {idle_buzz = 0, buzz_[1:5]} buzz_t /*verilator public*/;
+    `ifdef USE_VERILATOR
+        typedef enum logic [1:0] {idle_fizz = 0, fizz_[1:3]} fizz_t /*verilator public*/;
+        typedef enum logic [2:0] {idle_buzz = 0, buzz_[1:5]} buzz_t /*verilator public*/;
+    `else   // yosys does not support the shorthand notation of
+            // declaring multiple enum values at once
+        typedef enum logic [1:0] {idle_fizz = 0, fizz_1,fizz_2,fizz_3} fizz_t;
+        typedef enum logic [2:0] {idle_buzz = 0, buzz_1,buzz_2,buzz_3,buzz_4,buzz_5} buzz_t;
+    `endif
 
     fizz_t state_fizz;
     buzz_t state_buzz;
