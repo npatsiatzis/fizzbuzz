@@ -4,7 +4,7 @@ from cocotb.clock import Clock
 from cocotb.triggers import Timer,RisingEdge,ClockCycles
 from cocotb.result import TestFailure
 import random
-from cocotb_coverage.coverage import CoverCross,CoverPoint,coverage_db
+from cocotb_coverage.coverage import CoverCross,CoverPoint,coverage_db,CoverCheck
 
 covered_number = []
 g_length = int(cocotb.top.g_length)
@@ -29,12 +29,24 @@ def notify_buzz():
 	global buzz_count
 	buzz_count +=1
 
+def assert_callback():
+	raise TestFailure("Assertion failed!")
+
 
 #at_least = value is superfluous, just shows how you can determine the amount of times that
 #a bin must be hit to considered covered
 @CoverPoint("top.o_number",xf = lambda x : x.o_number.value, bins = list(range(g_length)), at_least=1)
 @CoverPoint("top.is_fizz",xf = lambda x : x.o_is_fizz.value == 1,bins = [True,False],at_least=1)
 @CoverPoint("top.is_buzz",xf = lambda x : x.o_is_buzz.value == 1,bins = [True,False],at_least=1)
+# CoverCheck can be used as a RTL language agnostic solution for embedding either
+# immediate or concurrent assertions in simulation.
+# most free simmulators dont support concurrent assertions (GHDL,icarus verilog)
+# CoverCheck can be used to provide this functionality when using such simulators. 
+@CoverCheck(
+	"assertion.example",
+	f_fail = lambda x : (x.o_number.value != 0) and (x.o_number.value %3 ==0) and (x.o_is_fizz.value ==0),
+	f_pass = lambda x : True
+)
 def number_cover(dut):
 	covered_number.append(dut.o_number.value)
 
@@ -59,6 +71,8 @@ async def test_fizzbuzz(dut):
 
 		coverage_db["top.is_fizz"].add_bins_callback(notify_fizz, True)
 		coverage_db["top.is_buzz"].add_bins_callback(notify_buzz, True)
+		coverage_db["assertion.example"].add_bins_callback(assert_callback, "FAIL")
+		
 		number_cover(dut)
 		assert not ((dut.o_number !=0) and ((dut.o_number.value %3 == 0 and dut.o_is_fizz.value != 1) \
 		or (dut.o_number.value % 5 ==0 and dut.o_is_buzz.value !=1))) , \
