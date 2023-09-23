@@ -8,9 +8,9 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include <verilated_cov.h>
-#include "Vfizzbuzz.h"
-#include "Vfizzbuzz_fizzbuzz.h"   //to get parameter values, after they've been made visible in SV
-#include "Vfizzbuzz___024root.h"
+#include "Vtop.h"
+#include "Vtop_top.h"   //to get parameter values, after they've been made visible in SV
+#include "Vtop___024root.h"
 
 #define MAX_SIM_TIME 300
 #define VERIF_START_TIME 7
@@ -66,8 +66,8 @@ class OutCoverage {
         }
 
         bool is_full_coverage(){
-            return cvg_size == 2*Vfizzbuzz_fizzbuzz::g_length;
-            // return coverage.size() == Vfizzbuzz_fizzbuzz::g_length-1;
+            return cvg_size == 2*Vtop_top::g_length;
+            // return coverage.size() == Vtop_top::g_length-1;
         }
 };
 
@@ -117,9 +117,9 @@ class Scb {
 class InDrv {
     private:
         // Vadder *dut;
-        std::shared_ptr<Vfizzbuzz> dut;
+        std::shared_ptr<Vtop> dut;
     public:
-        InDrv(std::shared_ptr<Vfizzbuzz> dut){
+        InDrv(std::shared_ptr<Vtop> dut){
             this->dut = dut;
         }
 
@@ -173,21 +173,20 @@ class InDrv {
 class OutMon {
     private:
         // Vadder *dut;
-        std::shared_ptr<Vfizzbuzz> dut;
+        std::shared_ptr<Vtop> dut;
         // Scb *scb;
         std::shared_ptr<Scb> scb;
         // OutCoverage *cvg;
         std::shared_ptr<OutCoverage> cvg;
     public:
-        OutMon(std::shared_ptr<Vfizzbuzz> dut, std::shared_ptr<Scb> scb,std::shared_ptr<OutCoverage> cvg){
+        OutMon(std::shared_ptr<Vtop> dut, std::shared_ptr<Scb> scb,std::shared_ptr<OutCoverage> cvg){
             this->dut = dut;
             this->scb = scb;
             this->cvg = cvg;
         }
 
         void monitor(){
-            // if(dut->o_valid == 1){
-            if(dut->rootp->fizzbuzz->start == 1) {
+            // if(dut->rootp->fizzbuzz->start == 1) {
                 OutTx *tx = new OutTx();    
                 tx->is_fizz = dut->o_is_fizz;
                 tx->is_buzz = dut->o_is_buzz;
@@ -196,7 +195,7 @@ class OutMon {
                 // then pass the transaction item to the scoreboard
                 scb->writeOut(tx);
                 cvg->write_coverage(tx);
-            }
+            // }
             // }
         }
 };
@@ -228,8 +227,8 @@ class Sequence{
             //     // in->B = rand() % 2;
 
             //         // while(cvg->is_covered(in->A,in->B) == false){
-            //         //     in->A = rand() % (1 << Vfizzbuzz_fizzbuzz::g_data_width);  
-            //         //     in->B = rand() % (1 << Vfizzbuzz_fizzbuzz::g_data_width); 
+            //         //     in->A = rand() % (1 << Vtop_top::g_data_width);  
+            //         //     in->B = rand() % (1 << Vtop_top::g_data_width); 
             //         // }
             //     // }
             //     return in;
@@ -240,7 +239,7 @@ class Sequence{
 };
 
 
-void dut_reset (std::shared_ptr<Vfizzbuzz> dut, vluint64_t &sim_time){
+void dut_reset (std::shared_ptr<Vtop> dut, vluint64_t &sim_time){
     dut->i_rst = 0;
     if(sim_time >= 3 && sim_time < 6){
         dut->i_rst = 1;
@@ -250,8 +249,8 @@ void dut_reset (std::shared_ptr<Vfizzbuzz> dut, vluint64_t &sim_time){
 int main(int argc, char** argv, char** env) {
     srand (time(NULL));
     Verilated::commandArgs(argc, argv);
-    // Vfizzbuzz *dut = new Vfizzbuzz;
-    std::shared_ptr<Vfizzbuzz> dut(new Vfizzbuzz);
+    // Vtop *dut = new Vtop;
+    std::shared_ptr<Vtop> dut(new Vtop);
 
     Verilated::traceEverOn(true);
     VerilatedVcdC *m_trace = new VerilatedVcdC;
