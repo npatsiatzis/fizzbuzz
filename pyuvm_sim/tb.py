@@ -3,7 +3,7 @@ from pyuvm import *
 import random
 import cocotb
 import pyuvm
-from utils import FizzBuzzBfm
+from utils import FizzBuzzBfm,AssertionsCheck
 from cocotb_coverage.coverage import CoverPoint,coverage_db
 
 
@@ -54,11 +54,13 @@ class Driver(uvm_driver):
 
     def start_of_simulation_phase(self):
         self.bfm = FizzBuzzBfm()
+        self.assertions_check = AssertionsCheck()
 
     async def launch_tb(self):
         cocotb.start_soon(Clock(self.bfm.dut.i_clk, 10, units="ns").start())
         await self.bfm.reset()
         self.bfm.start_bfm()
+        self.assertions_check.start_assertions()
 
     async def run_phase(self):
         await self.launch_tb()

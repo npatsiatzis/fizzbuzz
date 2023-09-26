@@ -3,7 +3,7 @@
 module fizzbuzz
     #(
         //use /*verilator public*/ on parameter -> parameter values visible to verialted code
-        parameter int g_length /*verilator public*/ = 20
+        parameter int g_length /*verilator public*/ = 100
     )
 
     (
