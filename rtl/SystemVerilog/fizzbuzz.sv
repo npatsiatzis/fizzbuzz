@@ -1,5 +1,3 @@
-`default_nettype none
-
 module fizzbuzz
     #(
         //use /*verilator public*/ on parameter -> parameter values visible to verialted code
