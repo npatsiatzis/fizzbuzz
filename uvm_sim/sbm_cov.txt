@@ -8,10 +8,10 @@ SUMMARY
 |     Property     |          Value           |
 ===============================================
 | User             | runner                   |
-| Host             | ca551a73491f             |
+| Host             | 2eb5420ce448             |
 | Tool             | Riviera-PRO 2022.04      |
 | Report file      | /home/runner/sbm_cov.txt |
-| Report date      | 2023-09-29 15:51         |
+| Report date      | 2023-09-30 13:09         |
 | Report arguments | -verbose                 |
 | Input file       | simulation session       |
 | Input file date  | simulation session       |
@@ -26,12 +26,12 @@ TEST DETAILS
 | Test     | work.acdb:work                  |
 | Status   | Ok                              |
 | Args     | asim +access+r -dbg -acdb       |
-| Simtime  | 570 ns                          |
-| Cputime  | 0.371 s                         |
+| Simtime  | 390 ns                          |
+| Cputime  | 0.250 s                         |
 | Seed     | 1                               |
-| Date     | 2023-09-29 15:51                |
+| Date     | 2023-09-30 13:09                |
 | User     | runner                          |
-| Host     | ca551a73491f                    |
+| Host     | 2eb5420ce448                    |
 | Host os  | Linux64                         |
 | Tool     | Riviera-PRO 2022.04 (simulator) |
 ==============================================
@@ -43,26 +43,30 @@ TEST DETAILS
 
 
 CUMULATIVE SUMMARY
-============================================
-|   Coverage Type    | Weight | Hits/Total |
-============================================
-| Statement Coverage |      1 |    73.099% |
-|--------------------|--------|------------|
-| Statements         |        |  125 / 171 |
-| Subprograms        |        |    24 / 45 |
-============================================
-| Branch Coverage    |      1 |    51.666% |
-|--------------------|--------|------------|
-| Branch paths       |        |    31 / 60 |
-| Branches           |        |     9 / 26 |
-============================================
-| Assertion Coverage |      1 |   100.000% |
-|--------------------|--------|------------|
-| Assertions         |        |      4 / 4 |
-| Covers             |        |      2 / 2 |
-============================================
-CUMULATIVE INSTANCE-BASED COVERAGE: 74.922%
-COVERED INSTANCES: 2 / 9
+=============================================
+|    Coverage Type    | Weight | Hits/Total |
+=============================================
+| Statement Coverage  |      1 |    73.157% |
+|---------------------|--------|------------|
+| Statements          |        |  139 / 190 |
+| Subprograms         |        |    25 / 50 |
+=============================================
+| Branch Coverage     |      1 |    50.000% |
+|---------------------|--------|------------|
+| Branch paths        |        |    33 / 66 |
+| Branches            |        |     9 / 29 |
+=============================================
+| Covergroup Coverage |      1 |   100.000% |
+|---------------------|--------|------------|
+| Types               |        |      1 / 1 |
+=============================================
+| Assertion Coverage  |      1 |   100.000% |
+|---------------------|--------|------------|
+| Assertions          |        |      4 / 4 |
+| Covers              |        |      2 / 2 |
+=============================================
+CUMULATIVE INSTANCE-BASED COVERAGE: 80.789%
+COVERED INSTANCES: 2 / 10
 FILES: 9
 
 
@@ -117,7 +121,7 @@ INSTANCE - /tb_top : work.tb_top
     | 38   |      |                                                                                                                              |
     | 39   |      |   //Clock generation                                                                                                         |
     | 40   |      |   always                                                                                                                     |
-    | 41   | 114  |     #5 intf.i_clk = ~intf.i_clk;                                                                                             |
+    | 41   |  78  |     #5 intf.i_clk = ~intf.i_clk;                                                                                             |
     | 42   |      | endmodule : tb_top                                                                                                           |
     ==============================================================================================================================================
 
@@ -153,7 +157,7 @@ INSTANCE - /tb_top/dut : work.fizzbuzz
     |------|------|----------------------------------------------------------------------------------------------------------------------------|
     | 26   |      |         logic start;                                                                                                       |
     | 27   |      |                                                                                                                            |
-    | 28   |  58  |         if(i_rst) begin                                                                                                    |
+    | 28   |  40  |         if(i_rst) begin                                                                                                    |
     | 29   |  1   |             cnt <= 0;                                                                                                      |
     | 30   |  1   |             state_fizz <= idle_fizz;                                                                                       |
     | 31   |  1   |             state_buzz <= idle_buzz;                                                                                       |
@@ -163,8 +167,8 @@ INSTANCE - /tb_top/dut : work.fizzbuzz
     | 35   |  1   |             o_is_buzz <= 1'b0;                                                                                             |
     | 36   |      |         end else begin                                                                                                     |
     | 37   |      |                                                                                                                            |
-    | 38   |  57  |             o_is_fizz <= 1'b0;                                                                                             |
-    | 39   |  57  |             case (state_fizz)                                                                                              |
+    | 38   |  39  |             o_is_fizz <= 1'b0;                                                                                             |
+    | 39   |  39  |             case (state_fizz)                                                                                              |
     | 40   |      |                 idle_fizz : begin                                                                                          |
     | 41   |  3   |                     if(i_en) begin                                                                                         |
     | 42   |  2   |                         start = 1'b1;                                                                                      |
@@ -174,19 +178,19 @@ INSTANCE - /tb_top/dut : work.fizzbuzz
     | 46   |      |                 end                                                                                                        |
     | 47   |      |                                                                                                                            |
     | 48   |      |                 fizz_1 :                                                                                                   |
-    | 49   |  18  |                     state_fizz <= fizz_2;                                                                                  |
+    | 49   |  12  |                     state_fizz <= fizz_2;                                                                                  |
     | 50   |      |                 fizz_2 : begin                                                                                             |
-    | 51   |  18  |                     o_is_fizz <= 1'b1;                                                                                     |
-    | 52   |  18  |                     state_fizz <= fizz_3;                                                                                  |
+    | 51   |  12  |                     o_is_fizz <= 1'b1;                                                                                     |
+    | 52   |  12  |                     state_fizz <= fizz_3;                                                                                  |
     | 53   |      |                 end                                                                                                        |
     | 54   |      |                 fizz_3 :                                                                                                   |
-    | 55   |  17  |                     state_fizz <= fizz_1;                                                                                  |
+    | 55   |  11  |                     state_fizz <= fizz_1;                                                                                  |
     | 56   |      |                 default :                                                                                                  |
     | 57   |  1   |                     state_fizz <= idle_fizz;                                                                               |
     | 58   |      |             endcase                                                                                                        |
     | 59   |      |                                                                                                                            |
-    | 60   |  57  |             o_is_buzz <= 1'b0;                                                                                             |
-    | 61   |  57  |             case (state_buzz)                                                                                              |
+    | 60   |  39  |             o_is_buzz <= 1'b0;                                                                                             |
+    | 61   |  39  |             case (state_buzz)                                                                                              |
     | 62   |      |                 idle_buzz : begin                                                                                          |
     | 63   |  3   |                     if(i_en) begin                                                                                         |
     | 64   |  2   |                         start = 1'b1;                                                                                      |
@@ -195,24 +199,24 @@ INSTANCE - /tb_top/dut : work.fizzbuzz
     | 67   |  1   |                         start = 1'b0;                                                                                      |
     | 68   |      |                 end                                                                                                        |
     | 69   |      |                 buzz_1 :                                                                                                   |
-    | 70   |  11  |                     state_buzz <= buzz_2;                                                                                  |
+    | 70   |  7   |                     state_buzz <= buzz_2;                                                                                  |
     | 71   |      |                 buzz_2 :                                                                                                   |
-    | 72   |  11  |                     state_buzz <= buzz_3;                                                                                  |
+    | 72   |  7   |                     state_buzz <= buzz_3;                                                                                  |
     | 73   |      |                 buzz_3 :                                                                                                   |
-    | 74   |  11  |                     state_buzz <= buzz_4;                                                                                  |
+    | 74   |  7   |                     state_buzz <= buzz_4;                                                                                  |
     | 75   |      |                 buzz_4 : begin                                                                                             |
-    | 76   |  10  |                     o_is_buzz <= 1'b1;                                                                                     |
-    | 77   |  10  |                     state_buzz <= buzz_5;                                                                                  |
+    | 76   |  7   |                     o_is_buzz <= 1'b1;                                                                                     |
+    | 77   |  7   |                     state_buzz <= buzz_5;                                                                                  |
     | 78   |      |                 end                                                                                                        |
     | 79   |      |                 buzz_5 :                                                                                                   |
-    | 80   |  10  |                     state_buzz <= buzz_1;                                                                                  |
+    | 80   |  7   |                     state_buzz <= buzz_1;                                                                                  |
     | 81   |      |                 default :                                                                                                  |
     | 82   |  1   |                     state_buzz <= idle_buzz;                                                                               |
     | 83   |      |             endcase                                                                                                        |
     | 84   |      |                                                                                                                            |
-    | 85   |  57  |             if(start) begin                                                                                                |
-    | 86   |  55  |                 if(32'(cnt) < G_LENGTH)                                                                                    |
-    | 87   |  54  |                     cnt <= cnt + 1;                                                                                        |
+    | 85   |  39  |             if(start) begin                                                                                                |
+    | 86   |  37  |                 if(32'(cnt) < G_LENGTH)                                                                                    |
+    | 87   |  36  |                     cnt <= cnt + 1;                                                                                        |
     | 88   |      |                 else begin                                                                                                 |
     | 89   |  1   |                     cnt <= '0;                                                                                             |
     | 90   |  1   |                     state_fizz <= idle_fizz;                                                                               |
@@ -223,7 +227,7 @@ INSTANCE - /tb_top/dut : work.fizzbuzz
     | 95   |      |         end                                                                                                                |
     | 96   |      |     end                                                                                                                    |
     | 97   |      |                                                                                                                            |
-    | 98   |  57  |     assign o_number = cnt;                                                                                                 |
+    | 98   |  39  |     assign o_number = cnt;                                                                                                 |
     | 99   |      |                                                                                                                            |
     | 100  |      |     check_fizz : assert property (@(posedge i_clk) disable iff(i_rst) (o_number > 0) && (o_number %3 == 0) |-> o_is_fizz); |
     ============================================================================================================================================
@@ -237,13 +241,13 @@ INSTANCE - /tb_top/dut : work.fizzbuzz
     ============================
     | IF branch#28#1#   |  2/2 |
     |     if_branch     |    1 |
-    |     else_branch   |   57 |
+    |     else_branch   |   39 |
     |-------------------|------|
     | CASE branch#39#1# |  5/5 |
     |     true#40#1#    |    3 |
-    |     true#48#1#    |   18 |
-    |     true#50#1#    |   18 |
-    |     true#54#1#    |   17 |
+    |     true#48#1#    |   12 |
+    |     true#50#1#    |   12 |
+    |     true#54#1#    |   11 |
     |     true#56#1#    |    1 |
     |-------------------|------|
     | IF branch#41#1#   |  2/2 |
@@ -252,11 +256,11 @@ INSTANCE - /tb_top/dut : work.fizzbuzz
     |-------------------|------|
     | CASE branch#61#1# |  7/7 |
     |     true#62#1#    |    3 |
-    |     true#69#1#    |   11 |
-    |     true#71#1#    |   11 |
-    |     true#73#1#    |   11 |
-    |     true#75#1#    |   10 |
-    |     true#79#1#    |   10 |
+    |     true#69#1#    |    7 |
+    |     true#71#1#    |    7 |
+    |     true#73#1#    |    7 |
+    |     true#75#1#    |    7 |
+    |     true#79#1#    |    7 |
     |     true#81#1#    |    1 |
     |-------------------|------|
     | IF branch#63#1#   |  2/2 |
@@ -264,11 +268,11 @@ INSTANCE - /tb_top/dut : work.fizzbuzz
     |     else_branch   |    1 |
     |-------------------|------|
     | IF branch#85#1#   |  2/2 |
-    |     if_branch     |   55 |
+    |     if_branch     |   37 |
     |     else_branch   |    2 |
     |-------------------|------|
     | IF branch#86#1#   |  2/2 |
-    |     if_branch     |   54 |
+    |     if_branch     |   36 |
     |     else_branch   |    1 |
     ============================
 
@@ -277,8 +281,8 @@ INSTANCE - /tb_top/dut : work.fizzbuzz
     =========================================================
     |        Name        |     Source     | Failed | Passed |
     |--------------------|----------------|--------|--------|
-    | check_fizz         | design.sv(100) |      0 |     16 |
-    | check_buzz         | design.sv(101) |      0 |     10 |
+    | check_fizz         | design.sv(100) |      0 |     11 |
+    | check_buzz         | design.sv(101) |      0 |      6 |
     | check_number_range | design.sv(102) |      0 |      2 |
     =========================================================
 
@@ -292,6 +296,40 @@ INSTANCE - /tb_top/dut : work.fizzbuzz
     =======================================
 
 
+CLASS - /\package testbench_pkg\/my_sequencer : work.testbench_pkg/\testbench_pkg my_sequencer \
+
+
+    SUMMARY
+    ============================================
+    |   Coverage Type    | Weight | Hits/Total |
+    ============================================
+    | Statement Coverage |      1 |    40.000% |
+    |--------------------|--------|------------|
+    | Statements         |        |      2 / 5 |
+    | Subprograms        |        |      1 / 4 |
+    ============================================
+    WEIGHTED AVERAGE LOCAL: 40.000%
+
+
+    STATEMENT COVERAGE
+    ==========================================================================================================
+    | Line |    Hits     |                                Source: sequence.sv                                |
+    |------|-------------|-----------------------------------------------------------------------------------|
+    | 1    |             | import pkg::*;                                                                    |
+    | 2    |             | class my_sequencer extends uvm_sequencer #(sequence_item #(pkg::G_LENGTH));       |
+    | 3    | UNR,UNR,UNR |   `uvm_component_utils(my_sequencer)                                              |
+    | 4    |             |                                                                                   |
+    | 5    |             |   // receive coverage information of the output domain from the monitor_out class |
+    | 6    |             |   uvm_tlm_analysis_fifo #(real) fifo_cvg;                                         |
+    | 7    |             |                                                                                   |
+    | 8    |             |   function new (string name = "", uvm_component parent);                          |
+    | 9    |      1      |     super.new(name,parent);                                                       |
+    | 10   |      1      |     fifo_cvg = new("cvg_fifo",this);                                              |
+    | 11   |             |   endfunction                                                                     |
+    | 12   |             |                                                                                   |
+    ==========================================================================================================
+
+
 CLASS - /\package testbench_pkg\/rand_sequence : work.testbench_pkg/\testbench_pkg rand_sequence \
 
 
@@ -299,55 +337,56 @@ CLASS - /\package testbench_pkg\/rand_sequence : work.testbench_pkg/\testbench_p
     ============================================
     |   Coverage Type    | Weight | Hits/Total |
     ============================================
-    | Statement Coverage |      1 |    33.333% |
+    | Statement Coverage |      1 |    46.666% |
     |--------------------|--------|------------|
-    | Statements         |        |     7 / 21 |
-    | Subprograms        |        |      3 / 7 |
+    | Statements         |        |    14 / 30 |
+    | Subprograms        |        |      3 / 8 |
     ============================================
-    | Branch Coverage    |      1 |     0.000% |
+    | Branch Coverage    |      1 |    12.500% |
     |--------------------|--------|------------|
-    | Branch paths       |        |     0 / 10 |
-    | Branches           |        |      0 / 5 |
+    | Branch paths       |        |     2 / 16 |
+    | Branches           |        |      0 / 8 |
     ============================================
     | Assertion Coverage |      1 |   100.000% |
     |--------------------|--------|------------|
     | Assertions         |        |      1 / 1 |
     ============================================
-    WEIGHTED AVERAGE LOCAL: 44.444%
+    WEIGHTED AVERAGE LOCAL: 53.055%
 
 
     STATEMENT COVERAGE
-    ===========================================================================================================================================================================
-    | Line |                           Hits                            |                                         Source: sequence.sv                                          |
-    |------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-    | 1    |                                                           | import pkg::*;                                                                                       |
-    | 2    |                                                           | class rand_sequence extends uvm_sequence;                                                            |
-    | 3    | UNR,UNR,UNR,UNR,UNR,UNR,1,UNR,UNR,UNR,UNR,UNR,UNR,UNR,UNR |   `uvm_object_utils(rand_sequence)                                                                   |
-    | 4    |                                                           |                                                                                                      |
-    | 5    |                                                           |   sequence_item #(pkg::G_LENGTH) sa_tx;                                                              |
-    | 6    |                                                           | //   covergroup cg;                                                                                  |
-    | 7    |                                                           |                                                                                                      |
-    | 8    |                                                           | //     A:   coverpoint sa_tx.i_A;                                                                    |
-    | 9    |                                                           | //     B:   coverpoint sa_tx.i_B;                                                                    |
-    | 10   |                                                           | //   endgroup: cg                                                                                    |
-    | 11   |                                                           |                                                                                                      |
-    | 12   |                                                           |   function new(string name = "");                                                                    |
-    | 13   |                             1                             |     super.new(name);                                                                                 |
-    | 14   |                                                           | //     cg = new();                                                                                   |
-    | 15   |                                                           |   endfunction                                                                                        |
-    | 16   |                                                           |                                                                                                      |
-    | 17   |                                                           |   task body();                                                                                       |
-    | 18   |                                                           |                                                                                                      |
-    | 19   |                             1                             |     repeat(pkg::G_LENGTH) begin                                                                      |
-    | 20   |                                                           | //     while(cg.get_coverage != 100.0) begin                                                         |
-    | 21   |                            50                             |       sa_tx = sequence_item #(pkg::G_LENGTH)::type_id::create("sa_tx");                              |
-    | 22   |                            50                             |       start_item(sa_tx);                                                                             |
-    | 23   |                            50                             |       assert(sa_tx.randomize());                                                                     |
-    | 24   |                                                           | //       cg.sample();                                                                                |
-    | 25   |                            50                             |       finish_item(sa_tx);                                                                            |
-    | 26   |                                                           | //       `uvm_info(get_type_name(), $sformatf("Current Coverage = %0f", cg.get_coverage()), UVM_LOW) |
-    | 27   |                                                           |     end                                                                                              |
-    ===========================================================================================================================================================================
+    ======================================================================================================================================================================
+    | Line |                            Hits                            |                                      Source: sequence.sv                                       |
+    |------|------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+    | 14   |                                                            |                                                                                                |
+    | 15   |                                                            | class rand_sequence extends uvm_sequence #(sequence_item #(pkg::G_LENGTH));                    |
+    | 16   | UNR,UNR,UNR,UNR,UNR,UNR,65,UNR,UNR,UNR,UNR,UNR,UNR,UNR,UNR |   `uvm_object_utils(rand_sequence)                                                             |
+    | 17   |                          1,1,0,0                           |   `uvm_declare_p_sequencer(my_sequencer)                                                       |
+    | 18   |                                                            |                                                                                                |
+    | 19   |                                                            |                                                                                                |
+    | 20   |                                                            |   sequence_item #(pkg::G_LENGTH) sa_tx;                                                        |
+    | 21   |                                                            |   sequence_item #(pkg::G_LENGTH) cov_seq;                                                      |
+    | 22   |                                                            |                                                                                                |
+    | 23   |                                                            |   function new(string name = "");                                                              |
+    | 24   |                             1                              |     super.new(name);                                                                           |
+    | 25   |                                                            |   endfunction                                                                                  |
+    | 26   |                                                            |                                                                                                |
+    | 27   |                                                            |   task body();                                                                                 |
+    | 28   |                                                            |     real cvg_percentage = 0;                                                                   |
+    | 29   |                                                            |                                                                                                |
+    | 30   |                                                            |     // CRV based on the coverage level of the out domain                                       |
+    | 31   |                            1,32                            |     while(cvg_percentage != 100.0) begin                                                       |
+    | 32   |                             32                             |       sa_tx = sequence_item #(pkg::G_LENGTH)::type_id::create("sa_tx");                        |
+    | 33   |                                                            |                                                                                                |
+    | 34   |                             32                             |       start_item(sa_tx);                                                                       |
+    | 35   |                             32                             |       assert(sa_tx.randomize());                                                               |
+    | 36   |                             32                             |       finish_item(sa_tx);                                                                      |
+    | 37   |                          32,32,32                          |       `uvm_info(get_type_name(), $sformatf("Current Coverage = %0f", cvg_percentage), UVM_LOW) |
+    | 38   |                                                            |       // get the coverage info of the out domain via the p_sequencer                           |
+    | 39   |                             32                             |       p_sequencer.fifo_cvg.try_get(cvg_percentage);                                            |
+    | 40   |                                                            |     end                                                                                        |
+    | 41   |                                                            |   endtask                                                                                      |
+    ======================================================================================================================================================================
 
 
     BRANCH COVERAGE
@@ -356,24 +395,36 @@ CLASS - /\package testbench_pkg\/rand_sequence : work.testbench_pkg/\testbench_p
     ===============================
     | Branch/Line          | Hits |
     ===============================
-    | IF branch#3#1#       |  0/2 |
+    | IF branch#16#1#      |  0/2 |
     |     if_branch        |    0 |
     |     else_branch      |    0 |
     |----------------------|------|
-    | IF branch#3#2#       |  0/2 |
+    | IF branch#16#2#      |  0/2 |
     |     if_branch        |    0 |
     |     all_false_branch |    0 |
     |----------------------|------|
-    | IF branch#3#3#       |  0/2 |
+    | IF branch#16#3#      |  0/2 |
     |     if_branch        |    0 |
     |     else_branch      |    0 |
     |----------------------|------|
-    | IF branch#3#4#       |  0/2 |
+    | IF branch#16#4#      |  0/2 |
     |     if_branch        |    0 |
     |     all_false_branch |    0 |
     |----------------------|------|
-    | IF branch#3#5#       |  0/2 |
+    | IF branch#16#5#      |  0/2 |
     |     if_branch        |    0 |
+    |     all_false_branch |    0 |
+    |----------------------|------|
+    | IF branch#17#1#      |  1/2 |
+    |     if_branch        |    0 |
+    |     all_false_branch |    1 |
+    |----------------------|------|
+    | IF branch#17#2#      |  0/2 |
+    |     if_branch        |    0 |
+    |     all_false_branch |    0 |
+    |----------------------|------|
+    | IF branch#37#1#      |  1/2 |
+    |     if_branch        |   32 |
     |     all_false_branch |    0 |
     ===============================
 
@@ -382,7 +433,7 @@ CLASS - /\package testbench_pkg\/rand_sequence : work.testbench_pkg/\testbench_p
     =======================================================
     |      Name       |     Source      | Failed | Passed |
     |-----------------|-----------------|--------|--------|
-    | @IMM_ASSERT#23@ | sequence.sv(23) |      0 |     50 |
+    | @IMM_ASSERT#35@ | sequence.sv(35) |      0 |     32 |
     =======================================================
 
 
@@ -440,11 +491,11 @@ CLASS - /\package testbench_pkg\/driver : work.testbench_pkg/\testbench_pkg driv
     | 28   |             |     sequence_item #(pkg::G_LENGTH) req_item;                                                                         |
     | 29   |             |                                                                                                                      |
     | 30   |      1      |     forever begin                                                                                                    |
-    | 31   |     53      |       if(!intf.i_rst) begin                                                                                          |
-    | 32   |     51      |           seq_item_port.get_next_item(req_item);                                                                     |
-    | 33   |     50      |           intf.i_en <= 1'b1;                                                                                         |
-    | 34   |     50      |           @(posedge intf.i_clk);                                                                                     |
-    | 35   |     50      |           seq_item_port.item_done();                                                                                 |
+    | 31   |     35      |       if(!intf.i_rst) begin                                                                                          |
+    | 32   |     33      |           seq_item_port.get_next_item(req_item);                                                                     |
+    | 33   |     32      |           intf.i_en <= 1'b1;                                                                                         |
+    | 34   |     32      |           @(posedge intf.i_clk);                                                                                     |
+    | 35   |     32      |           seq_item_port.item_done();                                                                                 |
     | 36   |             |       end else                                                                                                       |
     | 37   |      2      |         @(posedge intf.i_clk);                                                                                       |
     | 38   |             |     end                                                                                                              |
@@ -459,7 +510,7 @@ CLASS - /\package testbench_pkg\/driver : work.testbench_pkg/\testbench_pkg driv
     | Branch/Line     | Hits |
     ==========================
     | IF branch#31#1# |  2/2 |
-    |     if_branch   |   51 |
+    |     if_branch   |   33 |
     |     else_branch |    2 |
     ==========================
 
@@ -468,20 +519,24 @@ CLASS - /\package testbench_pkg\/monitor_out : work.testbench_pkg/\testbench_pkg
 
 
     SUMMARY
-    ============================================
-    |   Coverage Type    | Weight | Hits/Total |
-    ============================================
-    | Statement Coverage |      1 |    90.909% |
-    |--------------------|--------|------------|
-    | Statements         |        |    20 / 22 |
-    | Subprograms        |        |      4 / 6 |
-    ============================================
-    | Branch Coverage    |      1 |    66.666% |
-    |--------------------|--------|------------|
-    | Branch paths       |        |      4 / 6 |
-    | Branches           |        |      1 / 3 |
-    ============================================
-    WEIGHTED AVERAGE LOCAL: 78.787%
+    =============================================
+    |    Coverage Type    | Weight | Hits/Total |
+    =============================================
+    | Statement Coverage  |      1 |    92.307% |
+    |---------------------|--------|------------|
+    | Statements          |        |    24 / 26 |
+    | Subprograms         |        |      4 / 6 |
+    =============================================
+    | Branch Coverage     |      1 |    66.666% |
+    |---------------------|--------|------------|
+    | Branch paths        |        |      4 / 6 |
+    | Branches            |        |      1 / 3 |
+    =============================================
+    | Covergroup Coverage |      1 |   100.000% |
+    |---------------------|--------|------------|
+    | Types               |        |      1 / 1 |
+    =============================================
+    WEIGHTED AVERAGE LOCAL: 86.324%
 
 
     STATEMENT COVERAGE
@@ -490,42 +545,57 @@ CLASS - /\package testbench_pkg\/monitor_out : work.testbench_pkg/\testbench_pkg
     |------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | 1    |             | import pkg::*;                                                                                                                                                             |
     | 2    |             | class monitor_out extends uvm_monitor;                                                                                                                                     |
-    | 3    | UNR,UNR,222 |   `uvm_component_utils(monitor_out)                                                                                                                                        |
+    | 3    | UNR,UNR,150 |   `uvm_component_utils(monitor_out)                                                                                                                                        |
     | 4    |             |                                                                                                                                                                            |
     | 5    |             |   uvm_analysis_port #(sequence_item #(pkg::G_LENGTH)) mon_out;                                                                                                             |
-    | 6    |             |   virtual fizzbuzz_intf intf;                                                                                                                                              |
-    | 7    |             |   sequence_item #(pkg::G_LENGTH) datum;                                                                                                                                    |
-    | 8    |             |                                                                                                                                                                            |
-    | 9    |             |   function new (string name = "", uvm_component parent);                                                                                                                   |
-    | 10   |      1      |     super.new(name,parent);                                                                                                                                                |
-    | 11   |             |                                                                                                                                                                            |
-    | 12   |             |   endfunction : new                                                                                                                                                        |
-    | 13   |             |                                                                                                                                                                            |
-    | 14   |             |                                                                                                                                                                            |
-    | 15   |             |   function void build_phase(uvm_phase phase);                                                                                                                              |
-    | 16   |      1      |     super.build_phase(phase);                                                                                                                                              |
-    | 17   |      1      |     void'(uvm_resource_db#(virtual fizzbuzz_intf)::read_by_name(.scope("ifs"), .name("fizzbuzz_intf"), .val(intf)));                                                       |
+    | 6    |             |   uvm_analysis_port #(real) cvg_out;                                                                                                                                       |
+    | 7    |             |   virtual fizzbuzz_intf intf;                                                                                                                                              |
+    | 8    |             |   sequence_item #(pkg::G_LENGTH) datum;                                                                                                                                    |
+    | 9    |             |                                                                                                                                                                            |
+    | 10   |             |                                                                                                                                                                            |
+    | 11   |             |       // this module functions as a coverage of the output domain as well, apart from a monitor                                                                            |
+    | 12   |             |     covergroup cg_cvg;                                                                                                                                                     |
+    | 13   |             |     option.per_instance = 1;                                                                                                                                               |
+    | 14   |             |         result : coverpoint datum.o_number {                                                                                                                               |
+    | 15   |             |           bins range_result[]  = {[0:pkg::G_LENGTH]};                                                                                                                      |
+    | 16   |             |     }                                                                                                                                                                      |
+    | 17   |             |   endgroup: cg_cvg                                                                                                                                                         |
     | 18   |             |                                                                                                                                                                            |
-    | 19   |      1      |     mon_out = new ("mon_out",this);                                                                                                                                        |
-    | 20   |             |   endfunction: build_phase                                                                                                                                                 |
-    | 21   |             |                                                                                                                                                                            |
-    | 22   |             |   virtual task run_phase(uvm_phase phase);                                                                                                                                 |
+    | 19   |             |   function new (string name = "", uvm_component parent);                                                                                                                   |
+    | 20   |      1      |     super.new(name,parent);                                                                                                                                                |
+    | 21   |      1      |     cg_cvg = new();                                                                                                                                                        |
+    | 22   |             |   endfunction : new                                                                                                                                                        |
     | 23   |             |                                                                                                                                                                            |
-    | 24   |      1      |     forever begin                                                                                                                                                          |
-    | 25   |     58      |       if(!intf.i_rst) begin                                                                                                                                                |
-    | 26   |     56      |         datum = sequence_item #(G_LENGTH)::type_id::create("datum",this);                                                                                                  |
-    | 27   |     56      |         datum.o_is_fizz <= intf.o_is_fizz;                                                                                                                                 |
-    | 28   |     56      |         datum.o_is_buzz <= intf.o_is_buzz;                                                                                                                                 |
-    | 29   |     56      |         datum.o_number <= intf.o_number;                                                                                                                                   |
-    | 30   |             |                                                                                                                                                                            |
-    | 31   |  56,56,56   |         `uvm_info(get_type_name(),$sformatf("intf OUT  o_is_fizz = 0x%0h, o_is_buzz = 0x%0h,     o_number=0x%0h",intf.o_is_fizz,intf.o_is_buzz,intf.o_number),UVM_LOW)     |
-    | 32   |     56      |         @(posedge intf.i_clk);                                                                                                                                             |
-    | 33   |  55,55,55   |         `uvm_info(get_type_name(),$sformatf("datum OUT  o_is_fizz = 0x%0h, o_is_buzz = 0x%0h,     o_number=0x%0h",datum.o_is_fizz,datum.o_is_buzz,datum.o_number),UVM_LOW) |
-    | 34   |     55      |       mon_out.write(datum);                                                                                                                                                |
-    | 35   |             |       end else                                                                                                                                                             |
-    | 36   |      2      |         @(posedge intf.i_clk);                                                                                                                                             |
-    | 37   |             |     end                                                                                                                                                                    |
-    | 38   |             |   endtask : run_phase                                                                                                                                                      |
+    | 24   |             |                                                                                                                                                                            |
+    | 25   |             |   function void build_phase(uvm_phase phase);                                                                                                                              |
+    | 26   |      1      |     super.build_phase(phase);                                                                                                                                              |
+    | 27   |      1      |     void'(uvm_resource_db#(virtual fizzbuzz_intf)::read_by_name(.scope("ifs"), .name("fizzbuzz_intf"), .val(intf)));                                                       |
+    | 28   |             |                                                                                                                                                                            |
+    | 29   |      1      |     mon_out = new ("mon_out",this);                                                                                                                                        |
+    | 30   |      1      |     cvg_out = new ("cvg_out",this);                                                                                                                                        |
+    | 31   |             |   endfunction: build_phase                                                                                                                                                 |
+    | 32   |             |                                                                                                                                                                            |
+    | 33   |             |   virtual task run_phase(uvm_phase phase);                                                                                                                                 |
+    | 34   |             |                                                                                                                                                                            |
+    | 35   |      1      |     forever begin                                                                                                                                                          |
+    | 36   |     40      |       if(!intf.i_rst) begin                                                                                                                                                |
+    | 37   |     38      |         datum = sequence_item #(G_LENGTH)::type_id::create("datum",this);                                                                                                  |
+    | 38   |     38      |         datum.o_is_fizz <= intf.o_is_fizz;                                                                                                                                 |
+    | 39   |     38      |         datum.o_is_buzz <= intf.o_is_buzz;                                                                                                                                 |
+    | 40   |     38      |         datum.o_number <= intf.o_number;                                                                                                                                   |
+    | 41   |             |                                                                                                                                                                            |
+    | 42   |             |                                                                                                                                                                            |
+    | 43   |  38,38,38   |         `uvm_info(get_type_name(),$sformatf("intf OUT  o_is_fizz = 0x%0h, o_is_buzz = 0x%0h,     o_number=0x%0h",intf.o_is_fizz,intf.o_is_buzz,intf.o_number),UVM_LOW)     |
+    | 44   |     38      |         @(posedge intf.i_clk);                                                                                                                                             |
+    | 45   |  37,37,37   |         `uvm_info(get_type_name(),$sformatf("datum OUT  o_is_fizz = 0x%0h, o_is_buzz = 0x%0h,     o_number=0x%0h",datum.o_is_fizz,datum.o_is_buzz,datum.o_number),UVM_LOW) |
+    | 46   |     37      |       mon_out.write(datum);                                                                                                                                                |
+    | 47   |             |                                                                                                                                                                            |
+    | 48   |     37      |         cg_cvg.sample();                                                                                                                                                   |
+    | 49   |     37      |         cvg_out.write(cg_cvg.get_coverage);                                                                                                                                |
+    | 50   |             |       end else                                                                                                                                                             |
+    | 51   |      2      |         @(posedge intf.i_clk);                                                                                                                                             |
+    | 52   |             |     end                                                                                                                                                                    |
+    | 53   |             |   endtask : run_phase                                                                                                                                                      |
     ===================================================================================================================================================================================================
 
 
@@ -535,18 +605,63 @@ CLASS - /\package testbench_pkg\/monitor_out : work.testbench_pkg/\testbench_pkg
     ===============================
     | Branch/Line          | Hits |
     ===============================
-    | IF branch#25#1#      |  2/2 |
-    |     if_branch        |   56 |
+    | IF branch#36#1#      |  2/2 |
+    |     if_branch        |   38 |
     |     else_branch      |    2 |
     |----------------------|------|
-    | IF branch#31#1#      |  1/2 |
-    |     if_branch        |   56 |
+    | IF branch#43#1#      |  1/2 |
+    |     if_branch        |   38 |
     |     all_false_branch |    0 |
     |----------------------|------|
-    | IF branch#33#1#      |  1/2 |
-    |     if_branch        |   55 |
+    | IF branch#45#1#      |  1/2 |
+    |     if_branch        |   37 |
     |     all_false_branch |    0 |
     ===============================
+
+
+    COVERGROUP COVERAGE
+    ====================================================================================
+    |                    Covergroup                    |   Hits   |  Goal /  | Status  |
+    |                                                  |          | At Least |         |
+    ====================================================================================
+    | TYPE /\package testbench_pkg\/monitor_out/cg_cvg | 100.000% | 100.000% | Covered |
+    ====================================================================================
+    | INSTANCE <UNNAMED1>                              | 100.000% | 100.000% | Covered |
+    |--------------------------------------------------|----------|----------|---------|
+    | COVERPOINT <UNNAMED1>::result                    | 100.000% | 100.000% | Covered |
+    |--------------------------------------------------|----------|----------|---------|
+    | bin range_result[0]                              |        3 |        1 | Covered |
+    | bin range_result[1]                              |        2 |        1 | Covered |
+    | bin range_result[2]                              |        2 |        1 | Covered |
+    | bin range_result[3]                              |        2 |        1 | Covered |
+    | bin range_result[4]                              |        2 |        1 | Covered |
+    | bin range_result[5]                              |        1 |        1 | Covered |
+    | bin range_result[6]                              |        1 |        1 | Covered |
+    | bin range_result[7]                              |        1 |        1 | Covered |
+    | bin range_result[8]                              |        1 |        1 | Covered |
+    | bin range_result[9]                              |        1 |        1 | Covered |
+    | bin range_result[10]                             |        1 |        1 | Covered |
+    | bin range_result[11]                             |        1 |        1 | Covered |
+    | bin range_result[12]                             |        1 |        1 | Covered |
+    | bin range_result[13]                             |        1 |        1 | Covered |
+    | bin range_result[14]                             |        1 |        1 | Covered |
+    | bin range_result[15]                             |        1 |        1 | Covered |
+    | bin range_result[16]                             |        1 |        1 | Covered |
+    | bin range_result[17]                             |        1 |        1 | Covered |
+    | bin range_result[18]                             |        1 |        1 | Covered |
+    | bin range_result[19]                             |        1 |        1 | Covered |
+    | bin range_result[20]                             |        1 |        1 | Covered |
+    | bin range_result[21]                             |        1 |        1 | Covered |
+    | bin range_result[22]                             |        1 |        1 | Covered |
+    | bin range_result[23]                             |        1 |        1 | Covered |
+    | bin range_result[24]                             |        1 |        1 | Covered |
+    | bin range_result[25]                             |        1 |        1 | Covered |
+    | bin range_result[26]                             |        1 |        1 | Covered |
+    | bin range_result[27]                             |        1 |        1 | Covered |
+    | bin range_result[28]                             |        1 |        1 | Covered |
+    | bin range_result[29]                             |        1 |        1 | Covered |
+    | bin range_result[30]                             |        1 |        1 | Covered |
+    ====================================================================================
 
 
 CLASS - /\package testbench_pkg\/scoreboard : work.testbench_pkg/\testbench_pkg scoreboard \
@@ -570,55 +685,55 @@ CLASS - /\package testbench_pkg\/scoreboard : work.testbench_pkg/\testbench_pkg 
 
 
     STATEMENT COVERAGE
-    =========================================================================================================================================================================
-    | Line |    Hits     |                                                              Source: scoreboard.sv                                                               |
-    |------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-    | 1    |             | import pkg::*;                                                                                                                                   |
-    | 2    |             | class scoreboard extends uvm_scoreboard;                                                                                                         |
-    | 3    | UNR,UNR,110 |   `uvm_component_utils(scoreboard)                                                                                                               |
-    | 4    |             |                                                                                                                                                  |
-    | 5    |             |   function new(string name = "", uvm_component parent);                                                                                          |
-    | 6    |      1      |     super.new(name,parent);                                                                                                                      |
-    | 7    |             |   endfunction : new                                                                                                                              |
-    | 8    |             |                                                                                                                                                  |
-    | 9    |             |   uvm_tlm_analysis_fifo #(sequence_item #(pkg::G_LENGTH)) fifo_out;                                                                              |
-    | 10   |             |                                                                                                                                                  |
-    | 11   |             |   uvm_get_port #(sequence_item #(pkg::G_LENGTH)) result_get_port;                                                                                |
-    | 12   |             |                                                                                                                                                  |
-    | 13   |             |   sequence_item #(pkg::G_LENGTH) out;                                                                                                            |
-    | 14   |             |                                                                                                                                                  |
-    | 15   |             |   function void build_phase (uvm_phase phase);                                                                                                   |
-    | 16   |      1      |     super.build_phase(phase);                                                                                                                    |
-    | 17   |             |                                                                                                                                                  |
-    | 18   |      1      |     fifo_out = new("fifo_out",this);                                                                                                             |
-    | 19   |             |                                                                                                                                                  |
-    | 20   |      1      |     result_get_port = new("result_get_port",this);                                                                                               |
-    | 21   |             |   endfunction : build_phase                                                                                                                      |
-    | 22   |             |                                                                                                                                                  |
-    | 23   |             |   function void connect_phase(uvm_phase phase);                                                                                                  |
-    | 24   |      1      |     super.connect_phase(phase);                                                                                                                  |
-    | 25   |      1      |     result_get_port.connect(fifo_out.get_export);                                                                                                |
-    | 26   |             |   endfunction : connect_phase                                                                                                                    |
-    | 27   |             |                                                                                                                                                  |
-    | 28   |             |   function void check_phase(uvm_phase phase);                                                                                                    |
-    | 29   |      1      |     super.check_phase(phase);                                                                                                                    |
-    | 30   |             |                                                                                                                                                  |
-    | 31   |    1,55     |     while(result_get_port.can_get()) begin                                                                                                       |
-    | 32   |     55      |       out = sequence_item #(pkg::G_LENGTH)::type_id::create("out",this);                                                                         |
-    | 33   |             |                                                                                                                                                  |
-    | 34   |     55      |       result_get_port.try_get(out);                                                                                                              |
-    | 35   |             |                                                                                                                                                  |
-    | 36   |             |                                                                                                                                                  |
-    | 37   |  55,55,55   |       `uvm_info(get_type_name(),$sformatf("o_number=0x%0h, o_is_fizz=0x%0h, o_is_buzz= 0x%0h",out.o_number,out.o_is_fizz,out.o_is_buzz),UVM_LOW) |
-    | 38   |     55      |       if(out.o_number !=0 && out.o_number %3 ==0 && out.o_is_fizz !=1)                                                                           |
-    | 39   |    0,0,0    |         `uvm_error(get_type_name(),$sformatf("FAIL o_number=0x%0h, o_is_fizz=0x%0h",out.o_number,out.o_is_fizz))                                 |
-    | 40   |             |                                                                                                                                                  |
-    | 41   |             |                                                                                                                                                  |
-    | 42   |     55      |       if(out.o_number !=0 &&  out.o_number %5 ==0 && out.o_is_buzz !=1)                                                                          |
-    | 43   |    0,0,0    |         `uvm_error(get_type_name(),$sformatf("FAIL o_number=0x%0h, o_is_buzz=0x%0h",out.o_number,out.o_is_buzz))                                 |
-    | 44   |             |                                                                                                                                                  |
-    | 45   |             |     end                                                                                                                                          |
-    =========================================================================================================================================================================
+    ========================================================================================================================================================================
+    | Line |    Hits    |                                                              Source: scoreboard.sv                                                               |
+    |------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+    | 1    |            | import pkg::*;                                                                                                                                   |
+    | 2    |            | class scoreboard extends uvm_scoreboard;                                                                                                         |
+    | 3    | UNR,UNR,74 |   `uvm_component_utils(scoreboard)                                                                                                               |
+    | 4    |            |                                                                                                                                                  |
+    | 5    |            |   function new(string name = "", uvm_component parent);                                                                                          |
+    | 6    |     1      |     super.new(name,parent);                                                                                                                      |
+    | 7    |            |   endfunction : new                                                                                                                              |
+    | 8    |            |                                                                                                                                                  |
+    | 9    |            |   uvm_tlm_analysis_fifo #(sequence_item #(pkg::G_LENGTH)) fifo_out;                                                                              |
+    | 10   |            |                                                                                                                                                  |
+    | 11   |            |   uvm_get_port #(sequence_item #(pkg::G_LENGTH)) result_get_port;                                                                                |
+    | 12   |            |                                                                                                                                                  |
+    | 13   |            |   sequence_item #(pkg::G_LENGTH) out;                                                                                                            |
+    | 14   |            |                                                                                                                                                  |
+    | 15   |            |   function void build_phase (uvm_phase phase);                                                                                                   |
+    | 16   |     1      |     super.build_phase(phase);                                                                                                                    |
+    | 17   |            |                                                                                                                                                  |
+    | 18   |     1      |     fifo_out = new("fifo_out",this);                                                                                                             |
+    | 19   |            |                                                                                                                                                  |
+    | 20   |     1      |     result_get_port = new("result_get_port",this);                                                                                               |
+    | 21   |            |   endfunction : build_phase                                                                                                                      |
+    | 22   |            |                                                                                                                                                  |
+    | 23   |            |   function void connect_phase(uvm_phase phase);                                                                                                  |
+    | 24   |     1      |     super.connect_phase(phase);                                                                                                                  |
+    | 25   |     1      |     result_get_port.connect(fifo_out.get_export);                                                                                                |
+    | 26   |            |   endfunction : connect_phase                                                                                                                    |
+    | 27   |            |                                                                                                                                                  |
+    | 28   |            |   function void check_phase(uvm_phase phase);                                                                                                    |
+    | 29   |     1      |     super.check_phase(phase);                                                                                                                    |
+    | 30   |            |                                                                                                                                                  |
+    | 31   |    1,37    |     while(result_get_port.can_get()) begin                                                                                                       |
+    | 32   |     37     |       out = sequence_item #(pkg::G_LENGTH)::type_id::create("out",this);                                                                         |
+    | 33   |            |                                                                                                                                                  |
+    | 34   |     37     |       result_get_port.try_get(out);                                                                                                              |
+    | 35   |            |                                                                                                                                                  |
+    | 36   |            |                                                                                                                                                  |
+    | 37   |  37,37,37  |       `uvm_info(get_type_name(),$sformatf("o_number=0x%0h, o_is_fizz=0x%0h, o_is_buzz= 0x%0h",out.o_number,out.o_is_fizz,out.o_is_buzz),UVM_LOW) |
+    | 38   |     37     |       if(out.o_number !=0 && out.o_number %3 ==0 && out.o_is_fizz !=1)                                                                           |
+    | 39   |   0,0,0    |         `uvm_error(get_type_name(),$sformatf("FAIL o_number=0x%0h, o_is_fizz=0x%0h",out.o_number,out.o_is_fizz))                                 |
+    | 40   |            |                                                                                                                                                  |
+    | 41   |            |                                                                                                                                                  |
+    | 42   |     37     |       if(out.o_number !=0 &&  out.o_number %5 ==0 && out.o_is_buzz !=1)                                                                          |
+    | 43   |   0,0,0    |         `uvm_error(get_type_name(),$sformatf("FAIL o_number=0x%0h, o_is_buzz=0x%0h",out.o_number,out.o_is_buzz))                                 |
+    | 44   |            |                                                                                                                                                  |
+    | 45   |            |     end                                                                                                                                          |
+    ========================================================================================================================================================================
 
 
     BRANCH COVERAGE
@@ -628,12 +743,12 @@ CLASS - /\package testbench_pkg\/scoreboard : work.testbench_pkg/\testbench_pkg 
     | Branch/Line          | Hits |
     ===============================
     | IF branch#37#1#      |  1/2 |
-    |     if_branch        |   55 |
+    |     if_branch        |   37 |
     |     all_false_branch |    0 |
     |----------------------|------|
     | IF branch#38#1#      |  1/2 |
     |     if_branch        |    0 |
-    |     all_false_branch |   55 |
+    |     all_false_branch |   37 |
     |----------------------|------|
     | IF branch#39#1#      |  0/2 |
     |     if_branch        |    0 |
@@ -641,7 +756,7 @@ CLASS - /\package testbench_pkg\/scoreboard : work.testbench_pkg/\testbench_pkg 
     |----------------------|------|
     | IF branch#42#1#      |  1/2 |
     |     if_branch        |    0 |
-    |     all_false_branch |   55 |
+    |     all_false_branch |   37 |
     |----------------------|------|
     | IF branch#43#1#      |  0/2 |
     |     if_branch        |    0 |
@@ -656,47 +771,50 @@ CLASS - /\package testbench_pkg\/env : work.testbench_pkg/\testbench_pkg env \
     ============================================
     |   Coverage Type    | Weight | Hits/Total |
     ============================================
-    | Statement Coverage |      1 |    75.000% |
+    | Statement Coverage |      1 |    76.923% |
     |--------------------|--------|------------|
-    | Statements         |        |     9 / 12 |
+    | Statements         |        |    10 / 13 |
     | Subprograms        |        |      3 / 6 |
     ============================================
-    WEIGHTED AVERAGE LOCAL: 75.000%
+    WEIGHTED AVERAGE LOCAL: 76.923%
 
 
     STATEMENT COVERAGE
-    ==================================================================================================================
-    | Line |    Hits     |                                      Source: env.sv                                       |
-    |------|-------------|-------------------------------------------------------------------------------------------|
-    | 1    |             | import pkg::*;                                                                            |
-    | 2    |             | class env extends uvm_env;                                                                |
-    | 3    | UNR,UNR,UNR |   `uvm_component_utils(env)                                                               |
-    | 4    |             |                                                                                           |
-    | 5    |             |   uvm_sequencer #(sequence_item #(pkg::G_LENGTH)) seqr;                                   |
-    | 6    |             |   driver drv;                                                                             |
-    | 7    |             |   monitor_out res_mon;                                                                    |
-    | 8    |             |   scoreboard scb;                                                                         |
-    | 9    |             |                                                                                           |
-    | 10   |             |   function new (string name = "", uvm_component parent);                                  |
-    | 11   |      1      |     super.new(name,parent);                                                               |
-    | 12   |             |   endfunction : new                                                                       |
-    | 13   |             |                                                                                           |
-    | 14   |             |   function void build_phase(uvm_phase phase);                                             |
-    | 15   |      1      |     super.build_phase(phase);                                                             |
-    | 16   |      1      |     seqr = uvm_sequencer #(sequence_item #(pkg::G_LENGTH))::type_id::create("seqr",this); |
-    | 17   |             |                                                                                           |
-    | 18   |      1      |     drv = driver::type_id::create("drv",this);                                            |
-    | 19   |      1      |     res_mon = monitor_out::type_id::create("res_mon",this);                               |
-    | 20   |      1      |     scb = scoreboard::type_id::create("scb",this);                                        |
-    | 21   |             |   endfunction : build_phase                                                               |
-    | 22   |             |                                                                                           |
-    | 23   |             |   function void connect_phase(uvm_phase phase);                                           |
-    | 24   |      1      |     super.connect_phase(phase);                                                           |
-    | 25   |      1      |     drv.seq_item_port.connect(seqr.seq_item_export);                                      |
-    | 26   |      1      |     res_mon.mon_out.connect(scb.fifo_out.analysis_export);                                |
-    | 27   |             |   endfunction : connect_phase                                                             |
-    | 28   |             |                                                                                           |
-    ==================================================================================================================
+    =====================================================================================================================
+    | Line |    Hits     |                                        Source: env.sv                                        |
+    |------|-------------|----------------------------------------------------------------------------------------------|
+    | 1    |             | import pkg::*;                                                                               |
+    | 2    |             | class env extends uvm_env;                                                                   |
+    | 3    | UNR,UNR,UNR |   `uvm_component_utils(env)                                                                  |
+    | 4    |             |                                                                                              |
+    | 5    |             | //   uvm_sequencer #(sequence_item #(pkg::G_LENGTH)) seqr;                                   |
+    | 6    |             |   my_sequencer seqr;                                                                         |
+    | 7    |             |   driver drv;                                                                                |
+    | 8    |             |   monitor_out res_mon;                                                                       |
+    | 9    |             |   scoreboard scb;                                                                            |
+    | 10   |             |                                                                                              |
+    | 11   |             |   function new (string name = "", uvm_component parent);                                     |
+    | 12   |      1      |     super.new(name,parent);                                                                  |
+    | 13   |             |   endfunction : new                                                                          |
+    | 14   |             |                                                                                              |
+    | 15   |             |   function void build_phase(uvm_phase phase);                                                |
+    | 16   |      1      |     super.build_phase(phase);                                                                |
+    | 17   |             | //     seqr = uvm_sequencer #(sequence_item #(pkg::G_LENGTH))::type_id::create("seqr",this); |
+    | 18   |      1      |     seqr = my_sequencer::type_id::create("seqr",this);                                       |
+    | 19   |             |                                                                                              |
+    | 20   |      1      |     drv = driver::type_id::create("drv",this);                                               |
+    | 21   |      1      |     res_mon = monitor_out::type_id::create("res_mon",this);                                  |
+    | 22   |      1      |     scb = scoreboard::type_id::create("scb",this);                                           |
+    | 23   |             |   endfunction : build_phase                                                                  |
+    | 24   |             |                                                                                              |
+    | 25   |             |   function void connect_phase(uvm_phase phase);                                              |
+    | 26   |      1      |     super.connect_phase(phase);                                                              |
+    | 27   |      1      |     drv.seq_item_port.connect(seqr.seq_item_export);                                         |
+    | 28   |      1      |     res_mon.mon_out.connect(scb.fifo_out.analysis_export);                                   |
+    | 29   |      1      |     res_mon.cvg_out.connect(seqr.fifo_cvg.analysis_export);                                  |
+    | 30   |             |   endfunction : connect_phase                                                                |
+    | 31   |             |                                                                                              |
+    =====================================================================================================================
 
 
 CLASS - /\package testbench_pkg\/test : work.testbench_pkg/\testbench_pkg test \
@@ -747,7 +865,7 @@ CLASS - /\package testbench_pkg\/test : work.testbench_pkg/\testbench_pkg test \
     ==================================================================================
 
 
-CLASS - /\package testbench_pkg\/@sequence_item#(H32)@ : work.testbench_pkg/\testbench_pkg sequence_item \
+CLASS - /\package testbench_pkg\/@sequence_item#(H1e)@ : work.testbench_pkg/\testbench_pkg sequence_item \
 
 
     SUMMARY
@@ -772,7 +890,7 @@ CLASS - /\package testbench_pkg\/@sequence_item#(H32)@ : work.testbench_pkg/\tes
     | Line |                            Hits                            |                           Source: sequence_item.sv                           |
     |------|------------------------------------------------------------|------------------------------------------------------------------------------|
     | 1    |                                                            | class sequence_item #(parameter int G_LENGTH = 4) extends uvm_sequence_item; |
-    | 2    | UNR,UNR,UNR,UNR,UNR,UNR,50,UNR,UNR,UNR,UNR,UNR,UNR,UNR,UNR |   `uvm_object_utils(sequence_item #(G_LENGTH))                               |
+    | 2    | UNR,UNR,UNR,UNR,UNR,UNR,32,UNR,UNR,UNR,UNR,UNR,UNR,UNR,UNR |   `uvm_object_utils(sequence_item #(G_LENGTH))                               |
     | 3    |                                                            |                                                                              |
     | 4    |                                                            |   rand logic i_en;                                                           |
     | 5    |                                                            |   logic o_is_fizz;                                                           |
@@ -780,7 +898,7 @@ CLASS - /\package testbench_pkg\/@sequence_item#(H32)@ : work.testbench_pkg/\tes
     | 7    |                                                            |   logic [$clog2(G_LENGTH) -1 : 0] o_number;                                  |
     | 8    |                                                            |                                                                              |
     | 9    |                                                            |   function new(string name = "");                                            |
-    | 10   |                            161                             |     super.new(name);                                                         |
+    | 10   |                            107                             |     super.new(name);                                                         |
     | 11   |                                                            |   endfunction : new                                                          |
     | 12   |                                                            |                                                                              |
     ====================================================================================================================================================
@@ -820,26 +938,30 @@ CLASS - /\package testbench_pkg\/@sequence_item#(H32)@ : work.testbench_pkg/\tes
 
 
 CUMULATIVE SUMMARY
-============================================
-|   Coverage Type    | Weight | Hits/Total |
-============================================
-| Statement Coverage |      1 |    73.099% |
-|--------------------|--------|------------|
-| Statements         |        |  125 / 171 |
-| Subprograms        |        |    24 / 45 |
-============================================
-| Branch Coverage    |      1 |    51.666% |
-|--------------------|--------|------------|
-| Branch paths       |        |    31 / 60 |
-| Branches           |        |     9 / 26 |
-============================================
-| Assertion Coverage |      1 |   100.000% |
-|--------------------|--------|------------|
-| Assertions         |        |      4 / 4 |
-| Covers             |        |      2 / 2 |
-============================================
-CUMULATIVE DESIGN-BASED COVERAGE: 74.922%
-COVERED DESIGN UNITS: 2 / 9
+=============================================
+|    Coverage Type    | Weight | Hits/Total |
+=============================================
+| Statement Coverage  |      1 |    73.157% |
+|---------------------|--------|------------|
+| Statements          |        |  139 / 190 |
+| Subprograms         |        |    25 / 50 |
+=============================================
+| Branch Coverage     |      1 |    50.000% |
+|---------------------|--------|------------|
+| Branch paths        |        |    33 / 66 |
+| Branches            |        |     9 / 29 |
+=============================================
+| Covergroup Coverage |      1 |   100.000% |
+|---------------------|--------|------------|
+| Types               |        |      1 / 1 |
+=============================================
+| Assertion Coverage  |      1 |   100.000% |
+|---------------------|--------|------------|
+| Assertions          |        |      4 / 4 |
+| Covers              |        |      2 / 2 |
+=============================================
+CUMULATIVE DESIGN-BASED COVERAGE: 80.789%
+COVERED DESIGN UNITS: 2 / 10
 FILES: 9
 
 
@@ -883,7 +1005,7 @@ MODULE - work.tb_top
     | 38   |      |                                                                                                                              |
     | 39   |      |   //Clock generation                                                                                                         |
     | 40   |      |   always                                                                                                                     |
-    | 41   | 114  |     #5 intf.i_clk = ~intf.i_clk;                                                                                             |
+    | 41   |  78  |     #5 intf.i_clk = ~intf.i_clk;                                                                                             |
     | 42   |      | endmodule : tb_top                                                                                                           |
     ==============================================================================================================================================
 
@@ -919,7 +1041,7 @@ MODULE - work.fizzbuzz
     |------|------|----------------------------------------------------------------------------------------------------------------------------|
     | 26   |      |         logic start;                                                                                                       |
     | 27   |      |                                                                                                                            |
-    | 28   |  58  |         if(i_rst) begin                                                                                                    |
+    | 28   |  40  |         if(i_rst) begin                                                                                                    |
     | 29   |  1   |             cnt <= 0;                                                                                                      |
     | 30   |  1   |             state_fizz <= idle_fizz;                                                                                       |
     | 31   |  1   |             state_buzz <= idle_buzz;                                                                                       |
@@ -929,8 +1051,8 @@ MODULE - work.fizzbuzz
     | 35   |  1   |             o_is_buzz <= 1'b0;                                                                                             |
     | 36   |      |         end else begin                                                                                                     |
     | 37   |      |                                                                                                                            |
-    | 38   |  57  |             o_is_fizz <= 1'b0;                                                                                             |
-    | 39   |  57  |             case (state_fizz)                                                                                              |
+    | 38   |  39  |             o_is_fizz <= 1'b0;                                                                                             |
+    | 39   |  39  |             case (state_fizz)                                                                                              |
     | 40   |      |                 idle_fizz : begin                                                                                          |
     | 41   |  3   |                     if(i_en) begin                                                                                         |
     | 42   |  2   |                         start = 1'b1;                                                                                      |
@@ -940,19 +1062,19 @@ MODULE - work.fizzbuzz
     | 46   |      |                 end                                                                                                        |
     | 47   |      |                                                                                                                            |
     | 48   |      |                 fizz_1 :                                                                                                   |
-    | 49   |  18  |                     state_fizz <= fizz_2;                                                                                  |
+    | 49   |  12  |                     state_fizz <= fizz_2;                                                                                  |
     | 50   |      |                 fizz_2 : begin                                                                                             |
-    | 51   |  18  |                     o_is_fizz <= 1'b1;                                                                                     |
-    | 52   |  18  |                     state_fizz <= fizz_3;                                                                                  |
+    | 51   |  12  |                     o_is_fizz <= 1'b1;                                                                                     |
+    | 52   |  12  |                     state_fizz <= fizz_3;                                                                                  |
     | 53   |      |                 end                                                                                                        |
     | 54   |      |                 fizz_3 :                                                                                                   |
-    | 55   |  17  |                     state_fizz <= fizz_1;                                                                                  |
+    | 55   |  11  |                     state_fizz <= fizz_1;                                                                                  |
     | 56   |      |                 default :                                                                                                  |
     | 57   |  1   |                     state_fizz <= idle_fizz;                                                                               |
     | 58   |      |             endcase                                                                                                        |
     | 59   |      |                                                                                                                            |
-    | 60   |  57  |             o_is_buzz <= 1'b0;                                                                                             |
-    | 61   |  57  |             case (state_buzz)                                                                                              |
+    | 60   |  39  |             o_is_buzz <= 1'b0;                                                                                             |
+    | 61   |  39  |             case (state_buzz)                                                                                              |
     | 62   |      |                 idle_buzz : begin                                                                                          |
     | 63   |  3   |                     if(i_en) begin                                                                                         |
     | 64   |  2   |                         start = 1'b1;                                                                                      |
@@ -961,24 +1083,24 @@ MODULE - work.fizzbuzz
     | 67   |  1   |                         start = 1'b0;                                                                                      |
     | 68   |      |                 end                                                                                                        |
     | 69   |      |                 buzz_1 :                                                                                                   |
-    | 70   |  11  |                     state_buzz <= buzz_2;                                                                                  |
+    | 70   |  7   |                     state_buzz <= buzz_2;                                                                                  |
     | 71   |      |                 buzz_2 :                                                                                                   |
-    | 72   |  11  |                     state_buzz <= buzz_3;                                                                                  |
+    | 72   |  7   |                     state_buzz <= buzz_3;                                                                                  |
     | 73   |      |                 buzz_3 :                                                                                                   |
-    | 74   |  11  |                     state_buzz <= buzz_4;                                                                                  |
+    | 74   |  7   |                     state_buzz <= buzz_4;                                                                                  |
     | 75   |      |                 buzz_4 : begin                                                                                             |
-    | 76   |  10  |                     o_is_buzz <= 1'b1;                                                                                     |
-    | 77   |  10  |                     state_buzz <= buzz_5;                                                                                  |
+    | 76   |  7   |                     o_is_buzz <= 1'b1;                                                                                     |
+    | 77   |  7   |                     state_buzz <= buzz_5;                                                                                  |
     | 78   |      |                 end                                                                                                        |
     | 79   |      |                 buzz_5 :                                                                                                   |
-    | 80   |  10  |                     state_buzz <= buzz_1;                                                                                  |
+    | 80   |  7   |                     state_buzz <= buzz_1;                                                                                  |
     | 81   |      |                 default :                                                                                                  |
     | 82   |  1   |                     state_buzz <= idle_buzz;                                                                               |
     | 83   |      |             endcase                                                                                                        |
     | 84   |      |                                                                                                                            |
-    | 85   |  57  |             if(start) begin                                                                                                |
-    | 86   |  55  |                 if(32'(cnt) < G_LENGTH)                                                                                    |
-    | 87   |  54  |                     cnt <= cnt + 1;                                                                                        |
+    | 85   |  39  |             if(start) begin                                                                                                |
+    | 86   |  37  |                 if(32'(cnt) < G_LENGTH)                                                                                    |
+    | 87   |  36  |                     cnt <= cnt + 1;                                                                                        |
     | 88   |      |                 else begin                                                                                                 |
     | 89   |  1   |                     cnt <= '0;                                                                                             |
     | 90   |  1   |                     state_fizz <= idle_fizz;                                                                               |
@@ -989,7 +1111,7 @@ MODULE - work.fizzbuzz
     | 95   |      |         end                                                                                                                |
     | 96   |      |     end                                                                                                                    |
     | 97   |      |                                                                                                                            |
-    | 98   |  57  |     assign o_number = cnt;                                                                                                 |
+    | 98   |  39  |     assign o_number = cnt;                                                                                                 |
     | 99   |      |                                                                                                                            |
     | 100  |      |     check_fizz : assert property (@(posedge i_clk) disable iff(i_rst) (o_number > 0) && (o_number %3 == 0) |-> o_is_fizz); |
     ============================================================================================================================================
@@ -1003,13 +1125,13 @@ MODULE - work.fizzbuzz
     ============================
     | IF branch#28#1#   |  2/2 |
     |     if_branch     |    1 |
-    |     else_branch   |   57 |
+    |     else_branch   |   39 |
     |-------------------|------|
     | CASE branch#39#1# |  5/5 |
     |     true#40#1#    |    3 |
-    |     true#48#1#    |   18 |
-    |     true#50#1#    |   18 |
-    |     true#54#1#    |   17 |
+    |     true#48#1#    |   12 |
+    |     true#50#1#    |   12 |
+    |     true#54#1#    |   11 |
     |     true#56#1#    |    1 |
     |-------------------|------|
     | IF branch#41#1#   |  2/2 |
@@ -1018,11 +1140,11 @@ MODULE - work.fizzbuzz
     |-------------------|------|
     | CASE branch#61#1# |  7/7 |
     |     true#62#1#    |    3 |
-    |     true#69#1#    |   11 |
-    |     true#71#1#    |   11 |
-    |     true#73#1#    |   11 |
-    |     true#75#1#    |   10 |
-    |     true#79#1#    |   10 |
+    |     true#69#1#    |    7 |
+    |     true#71#1#    |    7 |
+    |     true#73#1#    |    7 |
+    |     true#75#1#    |    7 |
+    |     true#79#1#    |    7 |
     |     true#81#1#    |    1 |
     |-------------------|------|
     | IF branch#63#1#   |  2/2 |
@@ -1030,11 +1152,11 @@ MODULE - work.fizzbuzz
     |     else_branch   |    1 |
     |-------------------|------|
     | IF branch#85#1#   |  2/2 |
-    |     if_branch     |   55 |
+    |     if_branch     |   37 |
     |     else_branch   |    2 |
     |-------------------|------|
     | IF branch#86#1#   |  2/2 |
-    |     if_branch     |   54 |
+    |     if_branch     |   36 |
     |     else_branch   |    1 |
     ============================
 
@@ -1043,8 +1165,8 @@ MODULE - work.fizzbuzz
     =========================================================
     |        Name        |     Source     | Failed | Passed |
     |--------------------|----------------|--------|--------|
-    | check_fizz         | design.sv(100) |      0 |     16 |
-    | check_buzz         | design.sv(101) |      0 |     10 |
+    | check_fizz         | design.sv(100) |      0 |     11 |
+    | check_buzz         | design.sv(101) |      0 |      6 |
     | check_number_range | design.sv(102) |      0 |      2 |
     =========================================================
 
@@ -1058,6 +1180,40 @@ MODULE - work.fizzbuzz
     =======================================
 
 
+CLASS - work.testbench_pkg/\testbench_pkg my_sequencer \
+
+
+    SUMMARY
+    ============================================
+    |   Coverage Type    | Weight | Hits/Total |
+    ============================================
+    | Statement Coverage |      1 |    40.000% |
+    |--------------------|--------|------------|
+    | Statements         |        |      2 / 5 |
+    | Subprograms        |        |      1 / 4 |
+    ============================================
+    WEIGHTED AVERAGE: 40.000%
+
+
+    STATEMENT COVERAGE
+    ==========================================================================================================
+    | Line |    Hits     |                                Source: sequence.sv                                |
+    |------|-------------|-----------------------------------------------------------------------------------|
+    | 1    |             | import pkg::*;                                                                    |
+    | 2    |             | class my_sequencer extends uvm_sequencer #(sequence_item #(pkg::G_LENGTH));       |
+    | 3    | UNR,UNR,UNR |   `uvm_component_utils(my_sequencer)                                              |
+    | 4    |             |                                                                                   |
+    | 5    |             |   // receive coverage information of the output domain from the monitor_out class |
+    | 6    |             |   uvm_tlm_analysis_fifo #(real) fifo_cvg;                                         |
+    | 7    |             |                                                                                   |
+    | 8    |             |   function new (string name = "", uvm_component parent);                          |
+    | 9    |      1      |     super.new(name,parent);                                                       |
+    | 10   |      1      |     fifo_cvg = new("cvg_fifo",this);                                              |
+    | 11   |             |   endfunction                                                                     |
+    | 12   |             |                                                                                   |
+    ==========================================================================================================
+
+
 CLASS - work.testbench_pkg/\testbench_pkg rand_sequence \
 
 
@@ -1065,55 +1221,56 @@ CLASS - work.testbench_pkg/\testbench_pkg rand_sequence \
     ============================================
     |   Coverage Type    | Weight | Hits/Total |
     ============================================
-    | Statement Coverage |      1 |    33.333% |
+    | Statement Coverage |      1 |    46.666% |
     |--------------------|--------|------------|
-    | Statements         |        |     7 / 21 |
-    | Subprograms        |        |      3 / 7 |
+    | Statements         |        |    14 / 30 |
+    | Subprograms        |        |      3 / 8 |
     ============================================
-    | Branch Coverage    |      1 |     0.000% |
+    | Branch Coverage    |      1 |    12.500% |
     |--------------------|--------|------------|
-    | Branch paths       |        |     0 / 10 |
-    | Branches           |        |      0 / 5 |
+    | Branch paths       |        |     2 / 16 |
+    | Branches           |        |      0 / 8 |
     ============================================
     | Assertion Coverage |      1 |   100.000% |
     |--------------------|--------|------------|
     | Assertions         |        |      1 / 1 |
     ============================================
-    WEIGHTED AVERAGE: 44.444%
+    WEIGHTED AVERAGE: 53.055%
 
 
     STATEMENT COVERAGE
-    ===========================================================================================================================================================================
-    | Line |                           Hits                            |                                         Source: sequence.sv                                          |
-    |------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------|
-    | 1    |                                                           | import pkg::*;                                                                                       |
-    | 2    |                                                           | class rand_sequence extends uvm_sequence;                                                            |
-    | 3    | UNR,UNR,UNR,UNR,UNR,UNR,1,UNR,UNR,UNR,UNR,UNR,UNR,UNR,UNR |   `uvm_object_utils(rand_sequence)                                                                   |
-    | 4    |                                                           |                                                                                                      |
-    | 5    |                                                           |   sequence_item #(pkg::G_LENGTH) sa_tx;                                                              |
-    | 6    |                                                           | //   covergroup cg;                                                                                  |
-    | 7    |                                                           |                                                                                                      |
-    | 8    |                                                           | //     A:   coverpoint sa_tx.i_A;                                                                    |
-    | 9    |                                                           | //     B:   coverpoint sa_tx.i_B;                                                                    |
-    | 10   |                                                           | //   endgroup: cg                                                                                    |
-    | 11   |                                                           |                                                                                                      |
-    | 12   |                                                           |   function new(string name = "");                                                                    |
-    | 13   |                             1                             |     super.new(name);                                                                                 |
-    | 14   |                                                           | //     cg = new();                                                                                   |
-    | 15   |                                                           |   endfunction                                                                                        |
-    | 16   |                                                           |                                                                                                      |
-    | 17   |                                                           |   task body();                                                                                       |
-    | 18   |                                                           |                                                                                                      |
-    | 19   |                             1                             |     repeat(pkg::G_LENGTH) begin                                                                      |
-    | 20   |                                                           | //     while(cg.get_coverage != 100.0) begin                                                         |
-    | 21   |                            50                             |       sa_tx = sequence_item #(pkg::G_LENGTH)::type_id::create("sa_tx");                              |
-    | 22   |                            50                             |       start_item(sa_tx);                                                                             |
-    | 23   |                            50                             |       assert(sa_tx.randomize());                                                                     |
-    | 24   |                                                           | //       cg.sample();                                                                                |
-    | 25   |                            50                             |       finish_item(sa_tx);                                                                            |
-    | 26   |                                                           | //       `uvm_info(get_type_name(), $sformatf("Current Coverage = %0f", cg.get_coverage()), UVM_LOW) |
-    | 27   |                                                           |     end                                                                                              |
-    ===========================================================================================================================================================================
+    ======================================================================================================================================================================
+    | Line |                            Hits                            |                                      Source: sequence.sv                                       |
+    |------|------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+    | 14   |                                                            |                                                                                                |
+    | 15   |                                                            | class rand_sequence extends uvm_sequence #(sequence_item #(pkg::G_LENGTH));                    |
+    | 16   | UNR,UNR,UNR,UNR,UNR,UNR,65,UNR,UNR,UNR,UNR,UNR,UNR,UNR,UNR |   `uvm_object_utils(rand_sequence)                                                             |
+    | 17   |                          1,1,0,0                           |   `uvm_declare_p_sequencer(my_sequencer)                                                       |
+    | 18   |                                                            |                                                                                                |
+    | 19   |                                                            |                                                                                                |
+    | 20   |                                                            |   sequence_item #(pkg::G_LENGTH) sa_tx;                                                        |
+    | 21   |                                                            |   sequence_item #(pkg::G_LENGTH) cov_seq;                                                      |
+    | 22   |                                                            |                                                                                                |
+    | 23   |                                                            |   function new(string name = "");                                                              |
+    | 24   |                             1                              |     super.new(name);                                                                           |
+    | 25   |                                                            |   endfunction                                                                                  |
+    | 26   |                                                            |                                                                                                |
+    | 27   |                                                            |   task body();                                                                                 |
+    | 28   |                                                            |     real cvg_percentage = 0;                                                                   |
+    | 29   |                                                            |                                                                                                |
+    | 30   |                                                            |     // CRV based on the coverage level of the out domain                                       |
+    | 31   |                            1,32                            |     while(cvg_percentage != 100.0) begin                                                       |
+    | 32   |                             32                             |       sa_tx = sequence_item #(pkg::G_LENGTH)::type_id::create("sa_tx");                        |
+    | 33   |                                                            |                                                                                                |
+    | 34   |                             32                             |       start_item(sa_tx);                                                                       |
+    | 35   |                             32                             |       assert(sa_tx.randomize());                                                               |
+    | 36   |                             32                             |       finish_item(sa_tx);                                                                      |
+    | 37   |                          32,32,32                          |       `uvm_info(get_type_name(), $sformatf("Current Coverage = %0f", cvg_percentage), UVM_LOW) |
+    | 38   |                                                            |       // get the coverage info of the out domain via the p_sequencer                           |
+    | 39   |                             32                             |       p_sequencer.fifo_cvg.try_get(cvg_percentage);                                            |
+    | 40   |                                                            |     end                                                                                        |
+    | 41   |                                                            |   endtask                                                                                      |
+    ======================================================================================================================================================================
 
 
     BRANCH COVERAGE
@@ -1122,24 +1279,36 @@ CLASS - work.testbench_pkg/\testbench_pkg rand_sequence \
     ===============================
     | Branch/Line          | Hits |
     ===============================
-    | IF branch#3#1#       |  0/2 |
+    | IF branch#16#1#      |  0/2 |
     |     if_branch        |    0 |
     |     else_branch      |    0 |
     |----------------------|------|
-    | IF branch#3#2#       |  0/2 |
+    | IF branch#16#2#      |  0/2 |
     |     if_branch        |    0 |
     |     all_false_branch |    0 |
     |----------------------|------|
-    | IF branch#3#3#       |  0/2 |
+    | IF branch#16#3#      |  0/2 |
     |     if_branch        |    0 |
     |     else_branch      |    0 |
     |----------------------|------|
-    | IF branch#3#4#       |  0/2 |
+    | IF branch#16#4#      |  0/2 |
     |     if_branch        |    0 |
     |     all_false_branch |    0 |
     |----------------------|------|
-    | IF branch#3#5#       |  0/2 |
+    | IF branch#16#5#      |  0/2 |
     |     if_branch        |    0 |
+    |     all_false_branch |    0 |
+    |----------------------|------|
+    | IF branch#17#1#      |  1/2 |
+    |     if_branch        |    0 |
+    |     all_false_branch |    1 |
+    |----------------------|------|
+    | IF branch#17#2#      |  0/2 |
+    |     if_branch        |    0 |
+    |     all_false_branch |    0 |
+    |----------------------|------|
+    | IF branch#37#1#      |  1/2 |
+    |     if_branch        |   32 |
     |     all_false_branch |    0 |
     ===============================
 
@@ -1148,7 +1317,7 @@ CLASS - work.testbench_pkg/\testbench_pkg rand_sequence \
     =======================================================
     |      Name       |     Source      | Failed | Passed |
     |-----------------|-----------------|--------|--------|
-    | @IMM_ASSERT#23@ | sequence.sv(23) |      0 |     50 |
+    | @IMM_ASSERT#35@ | sequence.sv(35) |      0 |     32 |
     =======================================================
 
 
@@ -1206,11 +1375,11 @@ CLASS - work.testbench_pkg/\testbench_pkg driver \
     | 28   |             |     sequence_item #(pkg::G_LENGTH) req_item;                                                                         |
     | 29   |             |                                                                                                                      |
     | 30   |      1      |     forever begin                                                                                                    |
-    | 31   |     53      |       if(!intf.i_rst) begin                                                                                          |
-    | 32   |     51      |           seq_item_port.get_next_item(req_item);                                                                     |
-    | 33   |     50      |           intf.i_en <= 1'b1;                                                                                         |
-    | 34   |     50      |           @(posedge intf.i_clk);                                                                                     |
-    | 35   |     50      |           seq_item_port.item_done();                                                                                 |
+    | 31   |     35      |       if(!intf.i_rst) begin                                                                                          |
+    | 32   |     33      |           seq_item_port.get_next_item(req_item);                                                                     |
+    | 33   |     32      |           intf.i_en <= 1'b1;                                                                                         |
+    | 34   |     32      |           @(posedge intf.i_clk);                                                                                     |
+    | 35   |     32      |           seq_item_port.item_done();                                                                                 |
     | 36   |             |       end else                                                                                                       |
     | 37   |      2      |         @(posedge intf.i_clk);                                                                                       |
     | 38   |             |     end                                                                                                              |
@@ -1225,7 +1394,7 @@ CLASS - work.testbench_pkg/\testbench_pkg driver \
     | Branch/Line     | Hits |
     ==========================
     | IF branch#31#1# |  2/2 |
-    |     if_branch   |   51 |
+    |     if_branch   |   33 |
     |     else_branch |    2 |
     ==========================
 
@@ -1234,20 +1403,24 @@ CLASS - work.testbench_pkg/\testbench_pkg monitor_out \
 
 
     SUMMARY
-    ============================================
-    |   Coverage Type    | Weight | Hits/Total |
-    ============================================
-    | Statement Coverage |      1 |    90.909% |
-    |--------------------|--------|------------|
-    | Statements         |        |    20 / 22 |
-    | Subprograms        |        |      4 / 6 |
-    ============================================
-    | Branch Coverage    |      1 |    66.666% |
-    |--------------------|--------|------------|
-    | Branch paths       |        |      4 / 6 |
-    | Branches           |        |      1 / 3 |
-    ============================================
-    WEIGHTED AVERAGE: 78.787%
+    =============================================
+    |    Coverage Type    | Weight | Hits/Total |
+    =============================================
+    | Statement Coverage  |      1 |    92.307% |
+    |---------------------|--------|------------|
+    | Statements          |        |    24 / 26 |
+    | Subprograms         |        |      4 / 6 |
+    =============================================
+    | Branch Coverage     |      1 |    66.666% |
+    |---------------------|--------|------------|
+    | Branch paths        |        |      4 / 6 |
+    | Branches            |        |      1 / 3 |
+    =============================================
+    | Covergroup Coverage |      1 |   100.000% |
+    |---------------------|--------|------------|
+    | Types               |        |      1 / 1 |
+    =============================================
+    WEIGHTED AVERAGE: 86.324%
 
 
     STATEMENT COVERAGE
@@ -1256,42 +1429,57 @@ CLASS - work.testbench_pkg/\testbench_pkg monitor_out \
     |------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | 1    |             | import pkg::*;                                                                                                                                                             |
     | 2    |             | class monitor_out extends uvm_monitor;                                                                                                                                     |
-    | 3    | UNR,UNR,222 |   `uvm_component_utils(monitor_out)                                                                                                                                        |
+    | 3    | UNR,UNR,150 |   `uvm_component_utils(monitor_out)                                                                                                                                        |
     | 4    |             |                                                                                                                                                                            |
     | 5    |             |   uvm_analysis_port #(sequence_item #(pkg::G_LENGTH)) mon_out;                                                                                                             |
-    | 6    |             |   virtual fizzbuzz_intf intf;                                                                                                                                              |
-    | 7    |             |   sequence_item #(pkg::G_LENGTH) datum;                                                                                                                                    |
-    | 8    |             |                                                                                                                                                                            |
-    | 9    |             |   function new (string name = "", uvm_component parent);                                                                                                                   |
-    | 10   |      1      |     super.new(name,parent);                                                                                                                                                |
-    | 11   |             |                                                                                                                                                                            |
-    | 12   |             |   endfunction : new                                                                                                                                                        |
-    | 13   |             |                                                                                                                                                                            |
-    | 14   |             |                                                                                                                                                                            |
-    | 15   |             |   function void build_phase(uvm_phase phase);                                                                                                                              |
-    | 16   |      1      |     super.build_phase(phase);                                                                                                                                              |
-    | 17   |      1      |     void'(uvm_resource_db#(virtual fizzbuzz_intf)::read_by_name(.scope("ifs"), .name("fizzbuzz_intf"), .val(intf)));                                                       |
+    | 6    |             |   uvm_analysis_port #(real) cvg_out;                                                                                                                                       |
+    | 7    |             |   virtual fizzbuzz_intf intf;                                                                                                                                              |
+    | 8    |             |   sequence_item #(pkg::G_LENGTH) datum;                                                                                                                                    |
+    | 9    |             |                                                                                                                                                                            |
+    | 10   |             |                                                                                                                                                                            |
+    | 11   |             |       // this module functions as a coverage of the output domain as well, apart from a monitor                                                                            |
+    | 12   |             |     covergroup cg_cvg;                                                                                                                                                     |
+    | 13   |             |     option.per_instance = 1;                                                                                                                                               |
+    | 14   |             |         result : coverpoint datum.o_number {                                                                                                                               |
+    | 15   |             |           bins range_result[]  = {[0:pkg::G_LENGTH]};                                                                                                                      |
+    | 16   |             |     }                                                                                                                                                                      |
+    | 17   |             |   endgroup: cg_cvg                                                                                                                                                         |
     | 18   |             |                                                                                                                                                                            |
-    | 19   |      1      |     mon_out = new ("mon_out",this);                                                                                                                                        |
-    | 20   |             |   endfunction: build_phase                                                                                                                                                 |
-    | 21   |             |                                                                                                                                                                            |
-    | 22   |             |   virtual task run_phase(uvm_phase phase);                                                                                                                                 |
+    | 19   |             |   function new (string name = "", uvm_component parent);                                                                                                                   |
+    | 20   |      1      |     super.new(name,parent);                                                                                                                                                |
+    | 21   |      1      |     cg_cvg = new();                                                                                                                                                        |
+    | 22   |             |   endfunction : new                                                                                                                                                        |
     | 23   |             |                                                                                                                                                                            |
-    | 24   |      1      |     forever begin                                                                                                                                                          |
-    | 25   |     58      |       if(!intf.i_rst) begin                                                                                                                                                |
-    | 26   |     56      |         datum = sequence_item #(G_LENGTH)::type_id::create("datum",this);                                                                                                  |
-    | 27   |     56      |         datum.o_is_fizz <= intf.o_is_fizz;                                                                                                                                 |
-    | 28   |     56      |         datum.o_is_buzz <= intf.o_is_buzz;                                                                                                                                 |
-    | 29   |     56      |         datum.o_number <= intf.o_number;                                                                                                                                   |
-    | 30   |             |                                                                                                                                                                            |
-    | 31   |  56,56,56   |         `uvm_info(get_type_name(),$sformatf("intf OUT  o_is_fizz = 0x%0h, o_is_buzz = 0x%0h,     o_number=0x%0h",intf.o_is_fizz,intf.o_is_buzz,intf.o_number),UVM_LOW)     |
-    | 32   |     56      |         @(posedge intf.i_clk);                                                                                                                                             |
-    | 33   |  55,55,55   |         `uvm_info(get_type_name(),$sformatf("datum OUT  o_is_fizz = 0x%0h, o_is_buzz = 0x%0h,     o_number=0x%0h",datum.o_is_fizz,datum.o_is_buzz,datum.o_number),UVM_LOW) |
-    | 34   |     55      |       mon_out.write(datum);                                                                                                                                                |
-    | 35   |             |       end else                                                                                                                                                             |
-    | 36   |      2      |         @(posedge intf.i_clk);                                                                                                                                             |
-    | 37   |             |     end                                                                                                                                                                    |
-    | 38   |             |   endtask : run_phase                                                                                                                                                      |
+    | 24   |             |                                                                                                                                                                            |
+    | 25   |             |   function void build_phase(uvm_phase phase);                                                                                                                              |
+    | 26   |      1      |     super.build_phase(phase);                                                                                                                                              |
+    | 27   |      1      |     void'(uvm_resource_db#(virtual fizzbuzz_intf)::read_by_name(.scope("ifs"), .name("fizzbuzz_intf"), .val(intf)));                                                       |
+    | 28   |             |                                                                                                                                                                            |
+    | 29   |      1      |     mon_out = new ("mon_out",this);                                                                                                                                        |
+    | 30   |      1      |     cvg_out = new ("cvg_out",this);                                                                                                                                        |
+    | 31   |             |   endfunction: build_phase                                                                                                                                                 |
+    | 32   |             |                                                                                                                                                                            |
+    | 33   |             |   virtual task run_phase(uvm_phase phase);                                                                                                                                 |
+    | 34   |             |                                                                                                                                                                            |
+    | 35   |      1      |     forever begin                                                                                                                                                          |
+    | 36   |     40      |       if(!intf.i_rst) begin                                                                                                                                                |
+    | 37   |     38      |         datum = sequence_item #(G_LENGTH)::type_id::create("datum",this);                                                                                                  |
+    | 38   |     38      |         datum.o_is_fizz <= intf.o_is_fizz;                                                                                                                                 |
+    | 39   |     38      |         datum.o_is_buzz <= intf.o_is_buzz;                                                                                                                                 |
+    | 40   |     38      |         datum.o_number <= intf.o_number;                                                                                                                                   |
+    | 41   |             |                                                                                                                                                                            |
+    | 42   |             |                                                                                                                                                                            |
+    | 43   |  38,38,38   |         `uvm_info(get_type_name(),$sformatf("intf OUT  o_is_fizz = 0x%0h, o_is_buzz = 0x%0h,     o_number=0x%0h",intf.o_is_fizz,intf.o_is_buzz,intf.o_number),UVM_LOW)     |
+    | 44   |     38      |         @(posedge intf.i_clk);                                                                                                                                             |
+    | 45   |  37,37,37   |         `uvm_info(get_type_name(),$sformatf("datum OUT  o_is_fizz = 0x%0h, o_is_buzz = 0x%0h,     o_number=0x%0h",datum.o_is_fizz,datum.o_is_buzz,datum.o_number),UVM_LOW) |
+    | 46   |     37      |       mon_out.write(datum);                                                                                                                                                |
+    | 47   |             |                                                                                                                                                                            |
+    | 48   |     37      |         cg_cvg.sample();                                                                                                                                                   |
+    | 49   |     37      |         cvg_out.write(cg_cvg.get_coverage);                                                                                                                                |
+    | 50   |             |       end else                                                                                                                                                             |
+    | 51   |      2      |         @(posedge intf.i_clk);                                                                                                                                             |
+    | 52   |             |     end                                                                                                                                                                    |
+    | 53   |             |   endtask : run_phase                                                                                                                                                      |
     ===================================================================================================================================================================================================
 
 
@@ -1301,18 +1489,63 @@ CLASS - work.testbench_pkg/\testbench_pkg monitor_out \
     ===============================
     | Branch/Line          | Hits |
     ===============================
-    | IF branch#25#1#      |  2/2 |
-    |     if_branch        |   56 |
+    | IF branch#36#1#      |  2/2 |
+    |     if_branch        |   38 |
     |     else_branch      |    2 |
     |----------------------|------|
-    | IF branch#31#1#      |  1/2 |
-    |     if_branch        |   56 |
+    | IF branch#43#1#      |  1/2 |
+    |     if_branch        |   38 |
     |     all_false_branch |    0 |
     |----------------------|------|
-    | IF branch#33#1#      |  1/2 |
-    |     if_branch        |   55 |
+    | IF branch#45#1#      |  1/2 |
+    |     if_branch        |   37 |
     |     all_false_branch |    0 |
     ===============================
+
+
+    COVERGROUP COVERAGE
+    ====================================================================================
+    |                    Covergroup                    |   Hits   |  Goal /  | Status  |
+    |                                                  |          | At Least |         |
+    ====================================================================================
+    | TYPE /\package testbench_pkg\/monitor_out/cg_cvg | 100.000% | 100.000% | Covered |
+    ====================================================================================
+    | INSTANCE <UNNAMED1>                              | 100.000% | 100.000% | Covered |
+    |--------------------------------------------------|----------|----------|---------|
+    | COVERPOINT <UNNAMED1>::result                    | 100.000% | 100.000% | Covered |
+    |--------------------------------------------------|----------|----------|---------|
+    | bin range_result[0]                              |        3 |        1 | Covered |
+    | bin range_result[1]                              |        2 |        1 | Covered |
+    | bin range_result[2]                              |        2 |        1 | Covered |
+    | bin range_result[3]                              |        2 |        1 | Covered |
+    | bin range_result[4]                              |        2 |        1 | Covered |
+    | bin range_result[5]                              |        1 |        1 | Covered |
+    | bin range_result[6]                              |        1 |        1 | Covered |
+    | bin range_result[7]                              |        1 |        1 | Covered |
+    | bin range_result[8]                              |        1 |        1 | Covered |
+    | bin range_result[9]                              |        1 |        1 | Covered |
+    | bin range_result[10]                             |        1 |        1 | Covered |
+    | bin range_result[11]                             |        1 |        1 | Covered |
+    | bin range_result[12]                             |        1 |        1 | Covered |
+    | bin range_result[13]                             |        1 |        1 | Covered |
+    | bin range_result[14]                             |        1 |        1 | Covered |
+    | bin range_result[15]                             |        1 |        1 | Covered |
+    | bin range_result[16]                             |        1 |        1 | Covered |
+    | bin range_result[17]                             |        1 |        1 | Covered |
+    | bin range_result[18]                             |        1 |        1 | Covered |
+    | bin range_result[19]                             |        1 |        1 | Covered |
+    | bin range_result[20]                             |        1 |        1 | Covered |
+    | bin range_result[21]                             |        1 |        1 | Covered |
+    | bin range_result[22]                             |        1 |        1 | Covered |
+    | bin range_result[23]                             |        1 |        1 | Covered |
+    | bin range_result[24]                             |        1 |        1 | Covered |
+    | bin range_result[25]                             |        1 |        1 | Covered |
+    | bin range_result[26]                             |        1 |        1 | Covered |
+    | bin range_result[27]                             |        1 |        1 | Covered |
+    | bin range_result[28]                             |        1 |        1 | Covered |
+    | bin range_result[29]                             |        1 |        1 | Covered |
+    | bin range_result[30]                             |        1 |        1 | Covered |
+    ====================================================================================
 
 
 CLASS - work.testbench_pkg/\testbench_pkg scoreboard \
@@ -1336,55 +1569,55 @@ CLASS - work.testbench_pkg/\testbench_pkg scoreboard \
 
 
     STATEMENT COVERAGE
-    =========================================================================================================================================================================
-    | Line |    Hits     |                                                              Source: scoreboard.sv                                                               |
-    |------|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-    | 1    |             | import pkg::*;                                                                                                                                   |
-    | 2    |             | class scoreboard extends uvm_scoreboard;                                                                                                         |
-    | 3    | UNR,UNR,110 |   `uvm_component_utils(scoreboard)                                                                                                               |
-    | 4    |             |                                                                                                                                                  |
-    | 5    |             |   function new(string name = "", uvm_component parent);                                                                                          |
-    | 6    |      1      |     super.new(name,parent);                                                                                                                      |
-    | 7    |             |   endfunction : new                                                                                                                              |
-    | 8    |             |                                                                                                                                                  |
-    | 9    |             |   uvm_tlm_analysis_fifo #(sequence_item #(pkg::G_LENGTH)) fifo_out;                                                                              |
-    | 10   |             |                                                                                                                                                  |
-    | 11   |             |   uvm_get_port #(sequence_item #(pkg::G_LENGTH)) result_get_port;                                                                                |
-    | 12   |             |                                                                                                                                                  |
-    | 13   |             |   sequence_item #(pkg::G_LENGTH) out;                                                                                                            |
-    | 14   |             |                                                                                                                                                  |
-    | 15   |             |   function void build_phase (uvm_phase phase);                                                                                                   |
-    | 16   |      1      |     super.build_phase(phase);                                                                                                                    |
-    | 17   |             |                                                                                                                                                  |
-    | 18   |      1      |     fifo_out = new("fifo_out",this);                                                                                                             |
-    | 19   |             |                                                                                                                                                  |
-    | 20   |      1      |     result_get_port = new("result_get_port",this);                                                                                               |
-    | 21   |             |   endfunction : build_phase                                                                                                                      |
-    | 22   |             |                                                                                                                                                  |
-    | 23   |             |   function void connect_phase(uvm_phase phase);                                                                                                  |
-    | 24   |      1      |     super.connect_phase(phase);                                                                                                                  |
-    | 25   |      1      |     result_get_port.connect(fifo_out.get_export);                                                                                                |
-    | 26   |             |   endfunction : connect_phase                                                                                                                    |
-    | 27   |             |                                                                                                                                                  |
-    | 28   |             |   function void check_phase(uvm_phase phase);                                                                                                    |
-    | 29   |      1      |     super.check_phase(phase);                                                                                                                    |
-    | 30   |             |                                                                                                                                                  |
-    | 31   |    1,55     |     while(result_get_port.can_get()) begin                                                                                                       |
-    | 32   |     55      |       out = sequence_item #(pkg::G_LENGTH)::type_id::create("out",this);                                                                         |
-    | 33   |             |                                                                                                                                                  |
-    | 34   |     55      |       result_get_port.try_get(out);                                                                                                              |
-    | 35   |             |                                                                                                                                                  |
-    | 36   |             |                                                                                                                                                  |
-    | 37   |  55,55,55   |       `uvm_info(get_type_name(),$sformatf("o_number=0x%0h, o_is_fizz=0x%0h, o_is_buzz= 0x%0h",out.o_number,out.o_is_fizz,out.o_is_buzz),UVM_LOW) |
-    | 38   |     55      |       if(out.o_number !=0 && out.o_number %3 ==0 && out.o_is_fizz !=1)                                                                           |
-    | 39   |    0,0,0    |         `uvm_error(get_type_name(),$sformatf("FAIL o_number=0x%0h, o_is_fizz=0x%0h",out.o_number,out.o_is_fizz))                                 |
-    | 40   |             |                                                                                                                                                  |
-    | 41   |             |                                                                                                                                                  |
-    | 42   |     55      |       if(out.o_number !=0 &&  out.o_number %5 ==0 && out.o_is_buzz !=1)                                                                          |
-    | 43   |    0,0,0    |         `uvm_error(get_type_name(),$sformatf("FAIL o_number=0x%0h, o_is_buzz=0x%0h",out.o_number,out.o_is_buzz))                                 |
-    | 44   |             |                                                                                                                                                  |
-    | 45   |             |     end                                                                                                                                          |
-    =========================================================================================================================================================================
+    ========================================================================================================================================================================
+    | Line |    Hits    |                                                              Source: scoreboard.sv                                                               |
+    |------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+    | 1    |            | import pkg::*;                                                                                                                                   |
+    | 2    |            | class scoreboard extends uvm_scoreboard;                                                                                                         |
+    | 3    | UNR,UNR,74 |   `uvm_component_utils(scoreboard)                                                                                                               |
+    | 4    |            |                                                                                                                                                  |
+    | 5    |            |   function new(string name = "", uvm_component parent);                                                                                          |
+    | 6    |     1      |     super.new(name,parent);                                                                                                                      |
+    | 7    |            |   endfunction : new                                                                                                                              |
+    | 8    |            |                                                                                                                                                  |
+    | 9    |            |   uvm_tlm_analysis_fifo #(sequence_item #(pkg::G_LENGTH)) fifo_out;                                                                              |
+    | 10   |            |                                                                                                                                                  |
+    | 11   |            |   uvm_get_port #(sequence_item #(pkg::G_LENGTH)) result_get_port;                                                                                |
+    | 12   |            |                                                                                                                                                  |
+    | 13   |            |   sequence_item #(pkg::G_LENGTH) out;                                                                                                            |
+    | 14   |            |                                                                                                                                                  |
+    | 15   |            |   function void build_phase (uvm_phase phase);                                                                                                   |
+    | 16   |     1      |     super.build_phase(phase);                                                                                                                    |
+    | 17   |            |                                                                                                                                                  |
+    | 18   |     1      |     fifo_out = new("fifo_out",this);                                                                                                             |
+    | 19   |            |                                                                                                                                                  |
+    | 20   |     1      |     result_get_port = new("result_get_port",this);                                                                                               |
+    | 21   |            |   endfunction : build_phase                                                                                                                      |
+    | 22   |            |                                                                                                                                                  |
+    | 23   |            |   function void connect_phase(uvm_phase phase);                                                                                                  |
+    | 24   |     1      |     super.connect_phase(phase);                                                                                                                  |
+    | 25   |     1      |     result_get_port.connect(fifo_out.get_export);                                                                                                |
+    | 26   |            |   endfunction : connect_phase                                                                                                                    |
+    | 27   |            |                                                                                                                                                  |
+    | 28   |            |   function void check_phase(uvm_phase phase);                                                                                                    |
+    | 29   |     1      |     super.check_phase(phase);                                                                                                                    |
+    | 30   |            |                                                                                                                                                  |
+    | 31   |    1,37    |     while(result_get_port.can_get()) begin                                                                                                       |
+    | 32   |     37     |       out = sequence_item #(pkg::G_LENGTH)::type_id::create("out",this);                                                                         |
+    | 33   |            |                                                                                                                                                  |
+    | 34   |     37     |       result_get_port.try_get(out);                                                                                                              |
+    | 35   |            |                                                                                                                                                  |
+    | 36   |            |                                                                                                                                                  |
+    | 37   |  37,37,37  |       `uvm_info(get_type_name(),$sformatf("o_number=0x%0h, o_is_fizz=0x%0h, o_is_buzz= 0x%0h",out.o_number,out.o_is_fizz,out.o_is_buzz),UVM_LOW) |
+    | 38   |     37     |       if(out.o_number !=0 && out.o_number %3 ==0 && out.o_is_fizz !=1)                                                                           |
+    | 39   |   0,0,0    |         `uvm_error(get_type_name(),$sformatf("FAIL o_number=0x%0h, o_is_fizz=0x%0h",out.o_number,out.o_is_fizz))                                 |
+    | 40   |            |                                                                                                                                                  |
+    | 41   |            |                                                                                                                                                  |
+    | 42   |     37     |       if(out.o_number !=0 &&  out.o_number %5 ==0 && out.o_is_buzz !=1)                                                                          |
+    | 43   |   0,0,0    |         `uvm_error(get_type_name(),$sformatf("FAIL o_number=0x%0h, o_is_buzz=0x%0h",out.o_number,out.o_is_buzz))                                 |
+    | 44   |            |                                                                                                                                                  |
+    | 45   |            |     end                                                                                                                                          |
+    ========================================================================================================================================================================
 
 
     BRANCH COVERAGE
@@ -1394,12 +1627,12 @@ CLASS - work.testbench_pkg/\testbench_pkg scoreboard \
     | Branch/Line          | Hits |
     ===============================
     | IF branch#37#1#      |  1/2 |
-    |     if_branch        |   55 |
+    |     if_branch        |   37 |
     |     all_false_branch |    0 |
     |----------------------|------|
     | IF branch#38#1#      |  1/2 |
     |     if_branch        |    0 |
-    |     all_false_branch |   55 |
+    |     all_false_branch |   37 |
     |----------------------|------|
     | IF branch#39#1#      |  0/2 |
     |     if_branch        |    0 |
@@ -1407,7 +1640,7 @@ CLASS - work.testbench_pkg/\testbench_pkg scoreboard \
     |----------------------|------|
     | IF branch#42#1#      |  1/2 |
     |     if_branch        |    0 |
-    |     all_false_branch |   55 |
+    |     all_false_branch |   37 |
     |----------------------|------|
     | IF branch#43#1#      |  0/2 |
     |     if_branch        |    0 |
@@ -1422,47 +1655,50 @@ CLASS - work.testbench_pkg/\testbench_pkg env \
     ============================================
     |   Coverage Type    | Weight | Hits/Total |
     ============================================
-    | Statement Coverage |      1 |    75.000% |
+    | Statement Coverage |      1 |    76.923% |
     |--------------------|--------|------------|
-    | Statements         |        |     9 / 12 |
+    | Statements         |        |    10 / 13 |
     | Subprograms        |        |      3 / 6 |
     ============================================
-    WEIGHTED AVERAGE: 75.000%
+    WEIGHTED AVERAGE: 76.923%
 
 
     STATEMENT COVERAGE
-    ==================================================================================================================
-    | Line |    Hits     |                                      Source: env.sv                                       |
-    |------|-------------|-------------------------------------------------------------------------------------------|
-    | 1    |             | import pkg::*;                                                                            |
-    | 2    |             | class env extends uvm_env;                                                                |
-    | 3    | UNR,UNR,UNR |   `uvm_component_utils(env)                                                               |
-    | 4    |             |                                                                                           |
-    | 5    |             |   uvm_sequencer #(sequence_item #(pkg::G_LENGTH)) seqr;                                   |
-    | 6    |             |   driver drv;                                                                             |
-    | 7    |             |   monitor_out res_mon;                                                                    |
-    | 8    |             |   scoreboard scb;                                                                         |
-    | 9    |             |                                                                                           |
-    | 10   |             |   function new (string name = "", uvm_component parent);                                  |
-    | 11   |      1      |     super.new(name,parent);                                                               |
-    | 12   |             |   endfunction : new                                                                       |
-    | 13   |             |                                                                                           |
-    | 14   |             |   function void build_phase(uvm_phase phase);                                             |
-    | 15   |      1      |     super.build_phase(phase);                                                             |
-    | 16   |      1      |     seqr = uvm_sequencer #(sequence_item #(pkg::G_LENGTH))::type_id::create("seqr",this); |
-    | 17   |             |                                                                                           |
-    | 18   |      1      |     drv = driver::type_id::create("drv",this);                                            |
-    | 19   |      1      |     res_mon = monitor_out::type_id::create("res_mon",this);                               |
-    | 20   |      1      |     scb = scoreboard::type_id::create("scb",this);                                        |
-    | 21   |             |   endfunction : build_phase                                                               |
-    | 22   |             |                                                                                           |
-    | 23   |             |   function void connect_phase(uvm_phase phase);                                           |
-    | 24   |      1      |     super.connect_phase(phase);                                                           |
-    | 25   |      1      |     drv.seq_item_port.connect(seqr.seq_item_export);                                      |
-    | 26   |      1      |     res_mon.mon_out.connect(scb.fifo_out.analysis_export);                                |
-    | 27   |             |   endfunction : connect_phase                                                             |
-    | 28   |             |                                                                                           |
-    ==================================================================================================================
+    =====================================================================================================================
+    | Line |    Hits     |                                        Source: env.sv                                        |
+    |------|-------------|----------------------------------------------------------------------------------------------|
+    | 1    |             | import pkg::*;                                                                               |
+    | 2    |             | class env extends uvm_env;                                                                   |
+    | 3    | UNR,UNR,UNR |   `uvm_component_utils(env)                                                                  |
+    | 4    |             |                                                                                              |
+    | 5    |             | //   uvm_sequencer #(sequence_item #(pkg::G_LENGTH)) seqr;                                   |
+    | 6    |             |   my_sequencer seqr;                                                                         |
+    | 7    |             |   driver drv;                                                                                |
+    | 8    |             |   monitor_out res_mon;                                                                       |
+    | 9    |             |   scoreboard scb;                                                                            |
+    | 10   |             |                                                                                              |
+    | 11   |             |   function new (string name = "", uvm_component parent);                                     |
+    | 12   |      1      |     super.new(name,parent);                                                                  |
+    | 13   |             |   endfunction : new                                                                          |
+    | 14   |             |                                                                                              |
+    | 15   |             |   function void build_phase(uvm_phase phase);                                                |
+    | 16   |      1      |     super.build_phase(phase);                                                                |
+    | 17   |             | //     seqr = uvm_sequencer #(sequence_item #(pkg::G_LENGTH))::type_id::create("seqr",this); |
+    | 18   |      1      |     seqr = my_sequencer::type_id::create("seqr",this);                                       |
+    | 19   |             |                                                                                              |
+    | 20   |      1      |     drv = driver::type_id::create("drv",this);                                               |
+    | 21   |      1      |     res_mon = monitor_out::type_id::create("res_mon",this);                                  |
+    | 22   |      1      |     scb = scoreboard::type_id::create("scb",this);                                           |
+    | 23   |             |   endfunction : build_phase                                                                  |
+    | 24   |             |                                                                                              |
+    | 25   |             |   function void connect_phase(uvm_phase phase);                                              |
+    | 26   |      1      |     super.connect_phase(phase);                                                              |
+    | 27   |      1      |     drv.seq_item_port.connect(seqr.seq_item_export);                                         |
+    | 28   |      1      |     res_mon.mon_out.connect(scb.fifo_out.analysis_export);                                   |
+    | 29   |      1      |     res_mon.cvg_out.connect(seqr.fifo_cvg.analysis_export);                                  |
+    | 30   |             |   endfunction : connect_phase                                                                |
+    | 31   |             |                                                                                              |
+    =====================================================================================================================
 
 
 CLASS - work.testbench_pkg/\testbench_pkg test \
@@ -1538,7 +1774,7 @@ CLASS - work.testbench_pkg/\testbench_pkg sequence_item \
     | Line |                            Hits                            |                           Source: sequence_item.sv                           |
     |------|------------------------------------------------------------|------------------------------------------------------------------------------|
     | 1    |                                                            | class sequence_item #(parameter int G_LENGTH = 4) extends uvm_sequence_item; |
-    | 2    | UNR,UNR,UNR,UNR,UNR,UNR,50,UNR,UNR,UNR,UNR,UNR,UNR,UNR,UNR |   `uvm_object_utils(sequence_item #(G_LENGTH))                               |
+    | 2    | UNR,UNR,UNR,UNR,UNR,UNR,32,UNR,UNR,UNR,UNR,UNR,UNR,UNR,UNR |   `uvm_object_utils(sequence_item #(G_LENGTH))                               |
     | 3    |                                                            |                                                                              |
     | 4    |                                                            |   rand logic i_en;                                                           |
     | 5    |                                                            |   logic o_is_fizz;                                                           |
@@ -1546,7 +1782,7 @@ CLASS - work.testbench_pkg/\testbench_pkg sequence_item \
     | 7    |                                                            |   logic [$clog2(G_LENGTH) -1 : 0] o_number;                                  |
     | 8    |                                                            |                                                                              |
     | 9    |                                                            |   function new(string name = "");                                            |
-    | 10   |                            161                             |     super.new(name);                                                         |
+    | 10   |                            107                             |     super.new(name);                                                         |
     | 11   |                                                            |   endfunction : new                                                          |
     | 12   |                                                            |                                                                              |
     ====================================================================================================================================================

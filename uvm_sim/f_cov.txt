@@ -1,0 +1,193 @@
++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++       REPORT INFO       ++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+
+
+SUMMARY
+===============================================
+|     Property     |          Value           |
+===============================================
+| User             | runner                   |
+| Host             | 2eb5420ce448             |
+| Tool             | Riviera-PRO 2022.04      |
+| Report file      | /home/runner/f_cov.txt   |
+| Report date      | 2023-09-30 13:09         |
+| Report arguments | -verbose                 |
+| Input file       | /home/runner/fcover.acdb |
+| Input file date  | 2023-09-30 13:09         |
+| Number of tests  | 1                        |
+===============================================
+
+
+TEST DETAILS
+==============================================
+| Property |              Value              |
+==============================================
+| Test     | fcover.acdb:fcover              |
+| Status   | Ok                              |
+| Args     | asim +access+r                  |
+| Simtime  | 390 ns                          |
+| Cputime  | 0.546 s                         |
+| Seed     | 1                               |
+| Date     | 2023-09-30 13:09                |
+| User     | runner                          |
+| Host     | 2eb5420ce448                    |
+| Host os  | Linux64                         |
+| Tool     | Riviera-PRO 2022.04 (simulator) |
+==============================================
+
+
++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++     DESIGN HIERARCHY    ++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+
+
+CUMULATIVE SUMMARY
+=============================================
+|    Coverage Type    | Weight | Hits/Total |
+=============================================
+| Covergroup Coverage |      1 |   100.000% |
+|---------------------|--------|------------|
+| Types               |        |      1 / 1 |
+=============================================
+CUMULATIVE INSTANCE-BASED COVERAGE: 100.000%
+COVERED INSTANCES: 1 / 1
+FILES: 1
+
+
+CLASS - /\package testbench_pkg\/monitor_out : work.testbench_pkg/\testbench_pkg monitor_out \
+
+
+    SUMMARY
+    =============================================
+    |    Coverage Type    | Weight | Hits/Total |
+    =============================================
+    | Covergroup Coverage |      1 |   100.000% |
+    |---------------------|--------|------------|
+    | Types               |        |      1 / 1 |
+    =============================================
+    WEIGHTED AVERAGE LOCAL: 100.000%
+
+
+    COVERGROUP COVERAGE
+    ====================================================================================
+    |                    Covergroup                    |   Hits   |  Goal /  | Status  |
+    |                                                  |          | At Least |         |
+    ====================================================================================
+    | TYPE /\package testbench_pkg\/monitor_out/cg_cvg | 100.000% | 100.000% | Covered |
+    ====================================================================================
+    | INSTANCE <UNNAMED1>                              | 100.000% | 100.000% | Covered |
+    |--------------------------------------------------|----------|----------|---------|
+    | COVERPOINT <UNNAMED1>::result                    | 100.000% | 100.000% | Covered |
+    |--------------------------------------------------|----------|----------|---------|
+    | bin range_result[0]                              |        3 |        1 | Covered |
+    | bin range_result[1]                              |        2 |        1 | Covered |
+    | bin range_result[2]                              |        2 |        1 | Covered |
+    | bin range_result[3]                              |        2 |        1 | Covered |
+    | bin range_result[4]                              |        2 |        1 | Covered |
+    | bin range_result[5]                              |        1 |        1 | Covered |
+    | bin range_result[6]                              |        1 |        1 | Covered |
+    | bin range_result[7]                              |        1 |        1 | Covered |
+    | bin range_result[8]                              |        1 |        1 | Covered |
+    | bin range_result[9]                              |        1 |        1 | Covered |
+    | bin range_result[10]                             |        1 |        1 | Covered |
+    | bin range_result[11]                             |        1 |        1 | Covered |
+    | bin range_result[12]                             |        1 |        1 | Covered |
+    | bin range_result[13]                             |        1 |        1 | Covered |
+    | bin range_result[14]                             |        1 |        1 | Covered |
+    | bin range_result[15]                             |        1 |        1 | Covered |
+    | bin range_result[16]                             |        1 |        1 | Covered |
+    | bin range_result[17]                             |        1 |        1 | Covered |
+    | bin range_result[18]                             |        1 |        1 | Covered |
+    | bin range_result[19]                             |        1 |        1 | Covered |
+    | bin range_result[20]                             |        1 |        1 | Covered |
+    | bin range_result[21]                             |        1 |        1 | Covered |
+    | bin range_result[22]                             |        1 |        1 | Covered |
+    | bin range_result[23]                             |        1 |        1 | Covered |
+    | bin range_result[24]                             |        1 |        1 | Covered |
+    | bin range_result[25]                             |        1 |        1 | Covered |
+    | bin range_result[26]                             |        1 |        1 | Covered |
+    | bin range_result[27]                             |        1 |        1 | Covered |
+    | bin range_result[28]                             |        1 |        1 | Covered |
+    | bin range_result[29]                             |        1 |        1 | Covered |
+    | bin range_result[30]                             |        1 |        1 | Covered |
+    ====================================================================================
+
+
++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++       DESIGN UNITS      ++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+
+
+CUMULATIVE SUMMARY
+=============================================
+|    Coverage Type    | Weight | Hits/Total |
+=============================================
+| Covergroup Coverage |      1 |   100.000% |
+|---------------------|--------|------------|
+| Types               |        |      1 / 1 |
+=============================================
+CUMULATIVE DESIGN-BASED COVERAGE: 100.000%
+COVERED DESIGN UNITS: 1 / 1
+FILES: 1
+
+
+CLASS - work.testbench_pkg/\testbench_pkg monitor_out \
+
+
+    SUMMARY
+    =============================================
+    |    Coverage Type    | Weight | Hits/Total |
+    =============================================
+    | Covergroup Coverage |      1 |   100.000% |
+    |---------------------|--------|------------|
+    | Types               |        |      1 / 1 |
+    =============================================
+    WEIGHTED AVERAGE: 100.000%
+
+
+    COVERGROUP COVERAGE
+    ====================================================================================
+    |                    Covergroup                    |   Hits   |  Goal /  | Status  |
+    |                                                  |          | At Least |         |
+    ====================================================================================
+    | TYPE /\package testbench_pkg\/monitor_out/cg_cvg | 100.000% | 100.000% | Covered |
+    ====================================================================================
+    | INSTANCE <UNNAMED1>                              | 100.000% | 100.000% | Covered |
+    |--------------------------------------------------|----------|----------|---------|
+    | COVERPOINT <UNNAMED1>::result                    | 100.000% | 100.000% | Covered |
+    |--------------------------------------------------|----------|----------|---------|
+    | bin range_result[0]                              |        3 |        1 | Covered |
+    | bin range_result[1]                              |        2 |        1 | Covered |
+    | bin range_result[2]                              |        2 |        1 | Covered |
+    | bin range_result[3]                              |        2 |        1 | Covered |
+    | bin range_result[4]                              |        2 |        1 | Covered |
+    | bin range_result[5]                              |        1 |        1 | Covered |
+    | bin range_result[6]                              |        1 |        1 | Covered |
+    | bin range_result[7]                              |        1 |        1 | Covered |
+    | bin range_result[8]                              |        1 |        1 | Covered |
+    | bin range_result[9]                              |        1 |        1 | Covered |
+    | bin range_result[10]                             |        1 |        1 | Covered |
+    | bin range_result[11]                             |        1 |        1 | Covered |
+    | bin range_result[12]                             |        1 |        1 | Covered |
+    | bin range_result[13]                             |        1 |        1 | Covered |
+    | bin range_result[14]                             |        1 |        1 | Covered |
+    | bin range_result[15]                             |        1 |        1 | Covered |
+    | bin range_result[16]                             |        1 |        1 | Covered |
+    | bin range_result[17]                             |        1 |        1 | Covered |
+    | bin range_result[18]                             |        1 |        1 | Covered |
+    | bin range_result[19]                             |        1 |        1 | Covered |
+    | bin range_result[20]                             |        1 |        1 | Covered |
+    | bin range_result[21]                             |        1 |        1 | Covered |
+    | bin range_result[22]                             |        1 |        1 | Covered |
+    | bin range_result[23]                             |        1 |        1 | Covered |
+    | bin range_result[24]                             |        1 |        1 | Covered |
+    | bin range_result[25]                             |        1 |        1 | Covered |
+    | bin range_result[26]                             |        1 |        1 | Covered |
+    | bin range_result[27]                             |        1 |        1 | Covered |
+    | bin range_result[28]                             |        1 |        1 | Covered |
+    | bin range_result[29]                             |        1 |        1 | Covered |
+    | bin range_result[30]                             |        1 |        1 | Covered |
+    ====================================================================================
+
+
