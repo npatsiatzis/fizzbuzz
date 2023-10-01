@@ -13,6 +13,6 @@ ghdl --std=08  fizzbuzz_pkg.vhd fizzbuzz.vhd fizzbuzz.psl -e fizzbuzz
 prep -top fizzbuzz
 
 [files]
-fizzbuzz.psl
+./fizzbuzz.psl
 ../rtl/VHDL/fizzbuzz_pkg.vhd
 ../rtl/VHDL/fizzbuzz.vhd
