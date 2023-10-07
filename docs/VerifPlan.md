@@ -58,7 +58,7 @@ constructs and verification features. This plan consists of the following:
 * **Feature Extractions and Test Strategy**
 * **Test application approach for the fizzbuzz**
 * **Test verification approach**
-*
+
 1. **Feature Extractions and Test Strategy**
 
    The design features are extracted from the requirements specification. For each 
